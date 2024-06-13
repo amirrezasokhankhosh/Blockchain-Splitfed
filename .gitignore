@@ -26,6 +26,8 @@ bin/
 builders/
 config/
 external-chaincode/
+data/
+__pycache__
 install-fabric.sh
 
 # override the ignore of all config/ folders
