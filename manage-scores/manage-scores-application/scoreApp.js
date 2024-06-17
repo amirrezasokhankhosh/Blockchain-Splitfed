@@ -18,10 +18,21 @@ class ScoresApp {
         }
     }
 
+    async assignNodes(contract) {
+        try {
+            const roundInfoBytes = await (await contract).submitTransaction("AssignNodes");
+            const roundInfoString = this.utf8decoder.decode(roundInfoBytes);
+            return JSON.parse(roundInfoString);
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
+    }
+
     async readScore(contract, id) {
         try {
             const scoreBytes = await (await contract).evaluateTransaction("ReadScore", id);
-            const scoreString = scoreBytes.toString();
+            const scoreString = this.utf8decoder.decode(scoreBytes);
             return JSON.parse(scoreString);
         } catch (error) {
             console.log(error);
@@ -42,7 +53,8 @@ class ScoresApp {
     async getAllScores(contract) {
         try {
             const scoresBytes = await (await contract).evaluateTransaction("GetAllScores");
-            const scoresString = scoresBytes.toString();
+            const scoresString = this.utf8decoder.decode(scoresBytes);
+            console.log(scoresString);
             return JSON.parse(scoresString);
         } catch (error) {
             console.log(error);

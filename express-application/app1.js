@@ -92,6 +92,11 @@ app.post('/api/ledger/', async (req, res) => {
     res.send(message);
 });
 
+app.post('/api/assign/', async (req, res) => {
+    const message = await scoresApp.assignNodes(contractScores);
+    res.send(message);
+});
+
 app.get('/api/score/', jsonParser, async (req, res) => {
     const score = await scoresApp.readScore(contractScores, req.body.id);
     res.send(score);

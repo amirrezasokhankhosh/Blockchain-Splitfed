@@ -7,15 +7,52 @@ const {Contract} = require("fabric-contract-api");
 class ManageScores extends Contract {
 
     async InitScores(ctx) {
-        const num_clients = 12;
-        for (let i = 0; i < num_clients; i++) {
+        const num_servers = 4;
+        const num_clients = 2;
+        let num_nodes = num_servers * (num_clients + 1);
+        for (let i = 0; i < num_nodes; i++) {
             const node = {
                 id: `node_${i}`,
                 port: 8000 + i,
-                score: 0
+                score: i
             };
             await ctx.stub.putState(node.id, Buffer.from(stringify(sortKeysRecursive(node))));
         }
+        const roundInfo = {
+            id : "roundInfo",
+            num_servers : num_servers,
+            num_clients : num_clients,
+            servers : [],
+            clients : {}
+        }
+        await ctx.stub.putState(roundInfo.id, Buffer.from(stringify(sortKeysRecursive(roundInfo))));
+    }
+
+    async AssignNodes(ctx) {
+        let roundInfoString = await this.ReadScore(ctx, "roundInfo");
+        let roundInfo = JSON.parse(roundInfoString);
+        let num_nodes = roundInfo.num_servers * (roundInfo.num_clients + 1);
+        roundInfo.servers = [];
+        roundInfo.clients = {};
+
+        const scoresString = await this.GetAllScores(ctx);
+        const scores = JSON.parse(scoresString);
+        scores.sort((a, b) => (a.score < b.score ? 1 : -1));
+        let j = 0;
+        for (let i = 0 ; i < num_nodes ; i++) {
+            if (i < roundInfo.num_servers) {
+                roundInfo.clients[scores[i].id] = [];
+                roundInfo.servers.push(scores[i]);
+            } else {
+                let current_server = roundInfo.servers[j].id;
+                roundInfo.clients[current_server].push(scores[i]);
+                if (roundInfo.clients[current_server].length === roundInfo.num_clients) {
+                    j = j + 1;
+                }
+            }
+        }
+        await ctx.stub.putState(roundInfo.id, Buffer.from(stringify(sortKeysRecursive(roundInfo))));
+        return JSON.stringify(roundInfo);
     }
 
     async ReadScore(ctx, id) {
@@ -47,7 +84,9 @@ class ManageScores extends Contract {
                 console.log(err);
                 record = strValue;
             }
-            allResults.push(record);
+            if (record.id.startsWith("node")) {
+                allResults.push(record);
+            }
             result = await iterator.next();
         }
         return JSON.stringify(allResults);
