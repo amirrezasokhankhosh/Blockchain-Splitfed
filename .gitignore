@@ -24,6 +24,7 @@ package-lock.json
 # installed Fabric binaries etc.
 bin/
 builders/
+fabric-samples/
 config/
 external-chaincode/
 data/
