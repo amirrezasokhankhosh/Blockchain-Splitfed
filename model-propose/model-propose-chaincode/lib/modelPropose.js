@@ -49,19 +49,6 @@ class ModelPropose extends Contract {
         throw new Error("UpdateModelsInfo failed due to MVCC conflicts after multiple retries");
     }
 
-
-    // async UpdateModelsInfo(ctx) {
-    //     const modelsInfoBytes = await ctx.stub.getState("modelsInfo");
-    //     const modelsInfoString = modelsInfoBytes.toString();
-    //     let modelsInfo = JSON.parse(modelsInfoString);
-    //     modelsInfo.remaining = modelsInfo.remaining - 1;
-    //     if (modelsInfo.remaining === 0) {
-    //         modelsInfo.remaining = modelsInfo.numServers;
-    //     }
-    //     await ctx.stub.putState(modelsInfo.id, Buffer.from(stringify(sortKeysRecursive(modelsInfo))));
-    //     return modelsInfo.remaining === modelsInfo.numServers;
-    // }
-
     async CreateModel(ctx, id, serverPath, clientsPath) {
         const model = {
             id : id,

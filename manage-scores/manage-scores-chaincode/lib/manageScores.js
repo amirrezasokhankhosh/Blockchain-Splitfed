@@ -7,10 +7,10 @@ const {Contract} = require("fabric-contract-api");
 class ManageScores extends Contract {
 
     async InitScores(ctx) {
-        const num_servers = 2;
-        const num_clients = 2;
-        let num_nodes = num_servers * (num_clients + 1);
-        for (let i = 0; i < num_nodes; i++) {
+        const numServers = 2;
+        const numClients = 2;
+        let numNodes = numServers * (numClients + 1);
+        for (let i = 0; i < numNodes; i++) {
             const node = {
                 id: `node_${i}`,
                 port: 8000 + i,
@@ -20,8 +20,8 @@ class ManageScores extends Contract {
         }
         const roundInfo = {
             id : "roundInfo",
-            num_servers : num_servers,
-            num_clients : num_clients,
+            numServers : numServers,
+            numClients : numClients,
             servers : [],
             clients : {}
         }
@@ -31,7 +31,7 @@ class ManageScores extends Contract {
     async AssignNodes(ctx) {
         let roundInfoString = await this.ReadScore(ctx, "roundInfo");
         let roundInfo = JSON.parse(roundInfoString);
-        let num_nodes = roundInfo.num_servers * (roundInfo.num_clients + 1);
+        let numNodes = roundInfo.numServers * (roundInfo.numClients + 1);
         roundInfo.servers = [];
         roundInfo.clients = {};
 
@@ -39,14 +39,14 @@ class ManageScores extends Contract {
         const scores = JSON.parse(scoresString);
         scores.sort((a, b) => (a.score < b.score ? 1 : -1));
         let j = 0;
-        for (let i = 0 ; i < num_nodes ; i++) {
-            if (i < roundInfo.num_servers) {
+        for (let i = 0 ; i < numNodes ; i++) {
+            if (i < roundInfo.numServers) {
                 roundInfo.clients[scores[i].id] = [];
                 roundInfo.servers.push(scores[i]);
             } else {
-                let current_server = roundInfo.servers[j].id;
-                roundInfo.clients[current_server].push(scores[i]);
-                if (roundInfo.clients[current_server].length === roundInfo.num_clients) {
+                let currentServer = roundInfo.servers[j].id;
+                roundInfo.clients[currentServer].push(scores[i]);
+                if (roundInfo.clients[currentServer].length === roundInfo.numClients) {
                     j = j + 1;
                 }
             }
@@ -78,7 +78,6 @@ class ManageScores extends Contract {
 
     async GetAllScores(ctx) {
         const allResults = [];
-        // range query with empty string for startKey and endKey does an open-ended query of all assets in the chaincode namespace.
         const iterator = await ctx.stub.getStateByRange('', '');
         let result = await iterator.next();
         while (!result.done) {
