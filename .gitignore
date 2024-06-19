@@ -28,6 +28,7 @@ fabric-samples/
 config/
 external-chaincode/
 data/
+models/
 __pycache__
 install-fabric.sh
 

@@ -7,14 +7,14 @@ const {Contract} = require("fabric-contract-api");
 class ManageScores extends Contract {
 
     async InitScores(ctx) {
-        const num_servers = 4;
+        const num_servers = 2;
         const num_clients = 2;
         let num_nodes = num_servers * (num_clients + 1);
         for (let i = 0; i < num_nodes; i++) {
             const node = {
                 id: `node_${i}`,
                 port: 8000 + i,
-                score: i
+                score: 0
             };
             await ctx.stub.putState(node.id, Buffer.from(stringify(sortKeysRecursive(node))));
         }
@@ -63,10 +63,16 @@ class ManageScores extends Contract {
         return nodeBytes.toString();
     }
 
+    async GetServers(ctx) {
+        const roundInfoString = await this.ReadScore(ctx, "roundInfo");
+        const roundInfo = JSON.parse(roundInfoString);
+        return JSON.stringify(roundInfo.servers);
+    }
+
     async UpdateScore(ctx, id, score) {
         const nodeString = await this.ReadScore(ctx, id);
         let node = JSON.parse(nodeString);
-        node.score += parseFloat(score);
+        node.score = parseFloat(score);
         await ctx.stub.putState(id, Buffer.from(stringify(sortKeysRecursive(node))));
     }
 

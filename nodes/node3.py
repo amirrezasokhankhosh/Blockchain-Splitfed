@@ -3,7 +3,7 @@ from client import Client
 from server import Server
 
 
-port = 8000
+port = 8003
 num_clients = 3
 futures = {}
 executer = concurrent.futures.ThreadPoolExecutor(num_clients+1)

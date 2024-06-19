@@ -59,19 +59,24 @@ def round_completed():
     server.finish_round(client_port)
     return "Well Done."
 
+@app.route("/server/models/ready/")
+def models_ready():
+    executer.submit(server.evaluate, client)
+    # server.evaluate(client)
+    return "done"
 
 @app.route("/server/", methods=['POST'])
 def start_server():
-    clients = json.loads(request.get_json()["clients"])
-    server.start(clients)
+    temp = request.get_json()["clients"]
+    clients = [c["port"] for c in temp]
+    # server.start(clients)
+    executer.submit(server.start, clients)
     return "Started."
-
 
 @app.route("/save/")
 def plot():
     server.save_losses()
     return "Done"
-
 
 @app.route("/exit/")
 def exit_miner():

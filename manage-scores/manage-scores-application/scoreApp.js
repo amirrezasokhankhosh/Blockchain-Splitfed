@@ -40,6 +40,17 @@ class ScoresApp {
         }
     }
 
+    async getServers(contract) {
+        try {
+            const serversBytes = await (await contract).evaluateTransaction("GetServers");
+            const serversString = this.utf8decoder.decode(serversBytes);
+            return JSON.parse(serversString);
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
+    }
+
     async updateScore(contract, id, score) {
         try {
             await (await contract).submitTransaction("UpdateScore", id, score);
@@ -54,7 +65,6 @@ class ScoresApp {
         try {
             const scoresBytes = await (await contract).evaluateTransaction("GetAllScores");
             const scoresString = this.utf8decoder.decode(scoresBytes);
-            console.log(scoresString);
             return JSON.parse(scoresString);
         } catch (error) {
             console.log(error);

@@ -1,1 +1,2 @@
-curl -X POST http://localhost:3000/api/ledger
+curl -X POST http://localhost:3000/api/scores/ledger
+curl -X POST http://localhost:3000/api/models/ledger

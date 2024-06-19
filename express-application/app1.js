@@ -2,6 +2,9 @@
 
 const { ScoresApp } = require("../manage-scores/manage-scores-application");
 const scoresApp = new ScoresApp();
+const { ModelsApp } = require("../model-propose/model-propose-application");
+const modelsApp = new ModelsApp();
+
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -25,7 +28,8 @@ const tlsCertPath = path.resolve(cryptoPath, 'peers', 'peer0.org1.example.com', 
 const peerEndPoint = "localhost:7051";
 const peerHostAlias = "peer0.org1.example.com";
 
-const contractScores = InitConnection("scores", "scoresCC");
+const contractScores = InitConnection("main", "scoresCC");
+const contractModels = InitConnection("main", "modelsCC");
 
 const axios = require("axios");
 
@@ -82,12 +86,19 @@ async function InitConnection(channelName, chaincodeName) {
     return network.getContract(chaincodeName);
 }
 
+async function startEvaluation() {
+    const servers = await scoresApp.getServers(contractScores);
+    for (const server of servers) {
+        await axios.get(`http://localhost:${server.port}/server/models/ready/`);
+    }
+    console.log("Evaluation started.")
+}
 
 app.get('/', (req, res) => {
     res.send("Hello World!.");
 });
 
-app.post('/api/ledger/', async (req, res) => {
+app.post('/api/scores/ledger/', async (req, res) => {
     const message = await scoresApp.initScores(contractScores);
     res.send(message);
 });
@@ -102,14 +113,63 @@ app.get('/api/score/', jsonParser, async (req, res) => {
     res.send(score);
 });
 
-app.put('/api/score/', jsonParser, async (req, res) => {
-    const score = await scoresApp.updateScore(contractScores, req.body.id, req.body.score.toString());
-    res.send(score);
+app.get('/api/servers/', async (req, res) => {
+    const servers = await scoresApp.getServers(contractScores);
+    res.send(servers);
+});
+
+app.post('/api/scores/', jsonParser, async (req, res) => {
+    for (const name in req.body.scores) {
+        await scoresApp.updateScore(contractScores, name, req.body.scores[name].toString());
+    }
+    res.send("Scores were successfully created.");
 })
 
 app.get('/api/scores/', async (req, res) => {
     const scores = await scoresApp.getAllScores(contractScores);
     res.send(scores);
+})
+
+
+// **** MODEL PROPOSE API ****
+app.post('/api/models/ledger/', async (req, res) => {
+    const message = await modelsApp.initModels(contractModels);
+    res.send(message);
+});
+
+app.post('/api/model/', jsonParser, async (req, res) => {
+    const respond = await modelsApp.createModel(contractModels, req.body.id, req.body.serverPath, JSON.stringify(req.body.clientsPath));
+    if (respond) {
+        setTimeout(startEvaluation, 1);
+    }
+    res.send("Model was created successfully.");
+});
+
+app.get('/api/model/', jsonParser, async (req, res) => {
+    const message = await modelsApp.readModel(contractModels, req.body.id);
+    res.send(message);
+});
+
+app.get('/api/models/', async (req, res) => {
+    const message = await modelsApp.getAllModels(contractModels);
+    res.send(message);
+});
+
+// **** Admin ****
+app.get('/start/', async (req, res) => {
+    const assigned = await scoresApp.assignNodes(contractScores);
+    for (const server of assigned.servers) {
+        axios({
+            method: 'post',
+            url: `http://localhost:${server.port}/server/`,
+            headers: {},
+            data: {
+                clients: assigned.clients[server.id],
+            }
+        });
+    }
+    console.log("Training started.")
+    res.send("Training started.")
 })
 
 app.listen(port, () => {

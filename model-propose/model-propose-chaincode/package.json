@@ -1,7 +1,7 @@
 {
-    "name": "manage-scores-chaincode",
+    "name": "model-propose-chaincode",
     "version": "1.0.0",
-    "description": "manage-scores-chaincode contract implemented in JavaScript",
+    "description": "model-propose-chaincode implemented in JavaScript",
     "main": "index.js",
     "engines": {
         "node": ">=18"
