@@ -3,11 +3,17 @@
 const stringify = require("json-stringify-deterministic");
 const sortKeysRecursive = require("sort-keys-recursive");
 const {Contract} = require("fabric-contract-api");
+const { Mutex } = require("async-mutex");
 
 class ModelPropose extends Contract {
 
+    constructor() {
+        super();
+        this.mutex = new Mutex();
+    }
+
     async InitModels(ctx) {
-        const numServers = 2;
+        const numServers = 3;
         const modelsInfo = {
             id : "modelsInfo",
             numServers : numServers,
@@ -25,28 +31,21 @@ class ModelPropose extends Contract {
     }
 
     async UpdateModelsInfo(ctx) {
-        let retries = 3;
-        while (retries > 0) {
-            try {
-                const modelsInfoBytes = await ctx.stub.getState("modelsInfo");
-                const modelsInfoString = modelsInfoBytes.toString();
-                let modelsInfo = JSON.parse(modelsInfoString);
-                modelsInfo.remaining = modelsInfo.remaining - 1;
-                if (modelsInfo.remaining === 0) {
-                    modelsInfo.remaining = modelsInfo.numServers;
-                }
-                await ctx.stub.putState(modelsInfo.id, Buffer.from(JSON.stringify(modelsInfo)));
-                return modelsInfo.remaining === modelsInfo.numServers;
-            } catch (error) {
-                if (error.message.includes("MVCC_READ_CONFLICT")) {
-                    retries--;
-                    await new Promise(resolve => setTimeout(resolve, 100)); // Wait for 100ms before retrying
-                } else {
-                    throw error;
-                }
+        const release = await this.mutex.acquire();
+        try {
+            const modelsInfoBytes = await ctx.stub.getState("modelsInfo");
+            const modelsInfoString = modelsInfoBytes.toString();
+            let modelsInfo = JSON.parse(modelsInfoString);
+            modelsInfo.remaining = modelsInfo.remaining - 1;
+            if (modelsInfo.remaining === 0) {
+                modelsInfo.remaining = modelsInfo.numServers;
             }
+            await ctx.stub.putState(modelsInfo.id, Buffer.from(JSON.stringify(modelsInfo)));
+            var is_equal = modelsInfo.remaining === modelsInfo.numServers;
+        } finally {
+            release();
         }
-        throw new Error("UpdateModelsInfo failed due to MVCC conflicts after multiple retries");
+        return is_equal;
     }
 
     async CreateModel(ctx, id, serverPath, clientsPath) {
