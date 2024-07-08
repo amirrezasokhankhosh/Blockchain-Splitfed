@@ -91,12 +91,23 @@ class ManageScores extends Contract {
     async SelectWinners(ctx, k) {
         const serversString = await this.GetServersScores(ctx);
         let servers = JSON.parse(serversString);
+        const roundInfoString = await this.ReadScore(ctx, "roundInfo");
+        const roundInfo = JSON.parse(roundInfoString);
         servers.sort((a, b) => (a.score > b.score ? 1 : -1));
         let winners = [];
+        let clients = [];
         for (let i = 0 ; i < parseInt(k) ; i++) {
             winners.push(servers[i].id);
+            const winnerClients = roundInfo.clients[servers[i].id];
+            for (const client of winnerClients){
+                clients.push(client.id);
+            }
         }
-        return JSON.stringify(winners);
+        const res = {
+            servers : winners,
+            clients : clients
+        }
+        return JSON.stringify(res);
     }
 
     async GetAllScores(ctx) {

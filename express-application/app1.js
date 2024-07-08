@@ -144,6 +144,10 @@ app.get('/api/scores/', async (req, res) => {
     res.send(scores);
 })
 
+app.post('/api/select/', async (req, res) => {
+    const winners = await scoresApp.selectWinners(contractScores, k.toString());
+    res.send(winners);
+});
 
 // **** MODEL PROPOSE API ****
 app.post('/api/models/ledger/', async (req, res) => {
