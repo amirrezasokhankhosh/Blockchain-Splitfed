@@ -112,10 +112,10 @@ class Server:
                     client_scores.append(loss.item())
                 scores[server_name] = np.median(client_scores)
         print(scores)
-        # requests.put("http://localhost:3000/api/scores/", json={
-        #     "id": f"model_{self.port-8000}",
-        #     "scores": scores
-        # })
+        requests.post("http://localhost:3000/api/eval/", json={
+            "id": f"eval_{self.port-8000}",
+            "scores": scores
+        })
 
     def aggregate(self):
         clients = list(self.models.keys())
@@ -154,6 +154,7 @@ class Server:
 
         torch.save(self.avg_model.state_dict(), server_model_path)
 
+        # time.sleep((self.port-8000)/8)
         requests.post("http://localhost:3000/api/model/", json={
             "id": f"model_{self.port-8000}",
             "serverPath": server_model_path,

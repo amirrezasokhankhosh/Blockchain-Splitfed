@@ -19,14 +19,19 @@ class ModelsApp {
     }
 
     async createModel(contract, id, serverPath, modelsPath) {
-        try {
-            const resBytes = await (await contract).submitTransaction("CreateModel", id, serverPath, modelsPath);
-            const resString = this.utf8decoder.decode(resBytes);
-            return JSON.parse(resString);
-        } catch (error) {
-            console.log(error);
-            return error;
+        let tries = 4;
+        while (tries !== 0) {
+            try {
+                const resBytes = await (await contract).submitTransaction("CreateModel", id, serverPath, modelsPath);
+                const resString = this.utf8decoder.decode(resBytes);
+                return JSON.parse(resString);
+            } catch (error) {
+                tries = tries - 1;
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
         }
+        console.log("MVCC READ Conflict");
+        return false;
     }
 
 

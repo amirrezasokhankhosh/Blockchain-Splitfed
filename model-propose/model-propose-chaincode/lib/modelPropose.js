@@ -31,28 +31,22 @@ class ModelPropose extends Contract {
     }
 
     async UpdateModelsInfo(ctx) {
-        const release = await this.mutex.acquire();
-        try {
-            const modelsInfoBytes = await ctx.stub.getState("modelsInfo");
-            const modelsInfoString = modelsInfoBytes.toString();
-            let modelsInfo = JSON.parse(modelsInfoString);
-            modelsInfo.remaining = modelsInfo.remaining - 1;
-            if (modelsInfo.remaining === 0) {
-                modelsInfo.remaining = modelsInfo.numServers;
-            }
-            await ctx.stub.putState(modelsInfo.id, Buffer.from(JSON.stringify(modelsInfo)));
-            var is_equal = modelsInfo.remaining === modelsInfo.numServers;
-        } finally {
-            release();
+        const modelsInfoBytes = await ctx.stub.getState("modelsInfo");
+        const modelsInfoString = modelsInfoBytes.toString();
+        let modelsInfo = JSON.parse(modelsInfoString);
+        modelsInfo.remaining = modelsInfo.remaining - 1;
+        if (modelsInfo.remaining === 0) {
+            modelsInfo.remaining = modelsInfo.numServers;
         }
-        return is_equal;
+        await ctx.stub.putState(modelsInfo.id, Buffer.from(JSON.stringify(modelsInfo)));
+        return modelsInfo.remaining === modelsInfo.numServers;
     }
 
     async CreateModel(ctx, id, serverPath, clientsPath) {
         const model = {
-            id : id,
-            serverPath : serverPath,
-            clientsPath : JSON.parse(clientsPath)
+            id: id,
+            serverPath: serverPath,
+            clientsPath: JSON.parse(clientsPath)
         };
         await ctx.stub.putState(id, Buffer.from(stringify(sortKeysRecursive(model))));
         const res = await this.UpdateModelsInfo(ctx);

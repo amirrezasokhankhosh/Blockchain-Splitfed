@@ -4,6 +4,8 @@ const { ScoresApp } = require("../manage-scores/manage-scores-application");
 const scoresApp = new ScoresApp();
 const { ModelsApp } = require("../model-propose/model-propose-application");
 const modelsApp = new ModelsApp();
+const { EvalApp } = require("../eval-propose/eval-propose-application");
+const evalApp = new EvalApp();
 
 
 const express = require('express');
@@ -11,6 +13,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const jsonParser = bodyParser.json();
 const port = 3000;
+
+const k = 2;
 
 const crypto = require("crypto");
 const grpc = require("@grpc/grpc-js");
@@ -30,6 +34,7 @@ const peerHostAlias = "peer0.org1.example.com";
 
 const contractScores = InitConnection("main", "scoresCC");
 const contractModels = InitConnection("main", "modelsCC");
+const contractEval = InitConnection("main", "evalCC");
 
 const axios = require("axios");
 
@@ -94,6 +99,15 @@ async function startEvaluation() {
     console.log("Evaluation started.")
 }
 
+async function selectWinners() {
+    const winners = await scoresApp.selectWinners(contractScores, k.toString());
+    console.log(winners);
+}
+
+async function updateScores(){
+    await evalApp.updateScores(contractEval);
+    await selectWinners();
+}
 app.get('/', (req, res) => {
     res.send("Hello World!.");
 });
@@ -139,7 +153,7 @@ app.post('/api/models/ledger/', async (req, res) => {
 
 app.post('/api/model/', jsonParser, async (req, res) => {
     const respond = await modelsApp.createModel(contractModels, req.body.id, req.body.serverPath, JSON.stringify(req.body.clientsPath));
-    if (respond) {
+    if (respond === true) {
         setTimeout(startEvaluation, 1);
     }
     res.send("Model was created successfully.");
@@ -152,6 +166,31 @@ app.get('/api/model/', jsonParser, async (req, res) => {
 
 app.get('/api/models/', async (req, res) => {
     const message = await modelsApp.getAllModels(contractModels);
+    res.send(message);
+});
+
+
+// **** Eval Propose API ****
+app.post('/api/evals/ledger/', async (req, res) => {
+    const message = await evalApp.initLedger(contractEval);
+    res.send(message);
+});
+
+app.post('/api/eval/', jsonParser, async (req, res) => {
+    const respond = await evalApp.createEval(contractEval, req.body.id, JSON.stringify(req.body.scores));
+    if (respond === true) {
+        setTimeout(updateScores, 1);
+    }
+    res.send("Evaluation block was created successfully.");
+});
+
+app.get('/api/eval/', jsonParser, async (req, res) => {
+    const message = await evalApp.readEval(contractEval, req.body.id);
+    res.send(message);
+});
+
+app.get('/api/evals/', async (req, res) => {
+    const message = await evalApp.getAllEvals(contractEval);
     res.send(message);
 });
 

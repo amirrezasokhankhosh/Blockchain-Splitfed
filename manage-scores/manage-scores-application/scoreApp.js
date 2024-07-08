@@ -61,6 +61,17 @@ class ScoresApp {
         }
     }
 
+    async selectWinners(contract, k) {
+        try {
+            const winnersBytes = await (await contract).submitTransaction("SelectWinners", k);
+            const winnersString = this.utf8decoder.decode(winnersBytes);
+            return JSON.parse(winnersString);
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
+    }
+
     async getAllScores(contract) {
         try {
             const scoresBytes = await (await contract).evaluateTransaction("GetAllScores");

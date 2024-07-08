@@ -76,6 +76,29 @@ class ManageScores extends Contract {
         await ctx.stub.putState(id, Buffer.from(stringify(sortKeysRecursive(node))));
     }
 
+    async GetServersScores(ctx) {
+        const serversString = await this.GetServers(ctx);
+        let servers = JSON.parse(serversString);
+        let newServers = [];
+        for (const server of servers) {
+            const serverString = await this.ReadScore(ctx, server.id);
+            const newServer = JSON.parse(serverString);
+            newServers.push(newServer);
+        }
+        return JSON.stringify(newServers);
+    }
+
+    async SelectWinners(ctx, k) {
+        const serversString = await this.GetServersScores(ctx);
+        let servers = JSON.parse(serversString);
+        servers.sort((a, b) => (a.score > b.score ? 1 : -1));
+        let winners = [];
+        for (let i = 0 ; i < parseInt(k) ; i++) {
+            winners.push(servers[i].id);
+        }
+        return JSON.stringify(winners);
+    }
+
     async GetAllScores(ctx) {
         const allResults = [];
         const iterator = await ctx.stub.getStateByRange('', '');
