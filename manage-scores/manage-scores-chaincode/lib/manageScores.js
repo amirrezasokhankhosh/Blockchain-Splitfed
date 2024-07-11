@@ -37,7 +37,7 @@ class ManageScores extends Contract {
 
         const scoresString = await this.GetAllScores(ctx);
         const scores = JSON.parse(scoresString);
-        scores.sort((a, b) => (a.score < b.score ? 1 : -1));
+        scores.sort((a, b) => (a.score > b.score ? 1 : -1));
         let j = 0;
         for (let i = 0 ; i < numNodes ; i++) {
             if (i < roundInfo.numServers) {

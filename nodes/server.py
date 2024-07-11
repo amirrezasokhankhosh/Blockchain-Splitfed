@@ -52,8 +52,7 @@ class Server:
         self.semaphore = threading.Semaphore(1)
 
     def load_model(self):
-        # TODO: Load the previous global model
-        pass
+        self.avg_model.load_state_dict(torch.load("./models/global_server.pth"))
 
     def get_model(self, client_port):
         with self.semaphore:
@@ -169,7 +168,8 @@ class Server:
         self.clients = clients
         for client in self.clients:
             self.losses[client] = {}
-
+            requests.get(f"http://localhost:{client}/client/load/")
+        self.load_model()
         self.start_round()
 
     def start_round(self):

@@ -20,6 +20,12 @@ def train_client():
     return "The client started training!"
 
 
+@app.route("/client/load/")
+def load_client():
+    client.load_model()
+    return "The client model is loaded."
+
+
 @app.route("/server/train/", methods=['POST'])
 def train_server():
     client_port = request.get_json()["client_port"]

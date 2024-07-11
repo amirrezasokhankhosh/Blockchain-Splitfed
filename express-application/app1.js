@@ -15,6 +15,7 @@ const jsonParser = bodyParser.json();
 const port = 3000;
 
 const k = 2;
+const aggregatorPort = 5050
 
 const crypto = require("crypto");
 const grpc = require("@grpc/grpc-js");
@@ -102,6 +103,13 @@ async function startEvaluation() {
 async function selectWinners() {
     const winners = await scoresApp.selectWinners(contractScores, k.toString());
     console.log(winners);
+    await axios({
+        method: 'post',
+        url: `http://localhost:${aggregatorPort}/aggregate/`,
+        headers: {},
+        data: winners
+    });
+    console.log("Aggregation completed.");
 }
 
 async function updateScores(){

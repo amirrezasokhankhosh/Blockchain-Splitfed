@@ -64,7 +64,7 @@ class Client:
             self.test_dataset, batch_size=test_portion)
 
     def load_model(self):
-        pass
+        self.model.load_state_dict(torch.load("./models/global_client.pth"))
 
     def are_models_equal(self, model1, model2):
         model1_state_dict = model1.state_dict()
