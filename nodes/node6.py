@@ -50,19 +50,21 @@ def check_tasks():
             "status" : "In progress"
         }   
 
-    grads = future.result()
+    grads, loss = future.result()
     del futures[client_port]
 
     return {
         "status" : "Completed",
-        "grads" : json.dumps(grads.tolist())
+        "grads" : json.dumps(grads.tolist()),
+        "loss" : loss
     }
 
 
 @app.route("/server/round/", methods=['POST'])
 def round_completed():
     client_port = request.get_json()["client_port"]
-    server.finish_round(client_port)
+    losses = request.get_json()["losses"]
+    server.finish_round(client_port, losses)
     return "Well Done."
 
 @app.route("/server/models/ready/")
@@ -75,8 +77,8 @@ def models_ready():
 def start_server():
     temp = request.get_json()["clients"]
     clients = [c["port"] for c in temp]
-    # server.start(clients)
-    executer.submit(server.start, clients)
+    cycle = request.get_json()["cycle"]
+    executer.submit(server.start, clients, cycle)
     return "Started."
 
 @app.route("/save/")

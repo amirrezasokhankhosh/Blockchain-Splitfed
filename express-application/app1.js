@@ -1,10 +1,10 @@
 'use strict';
 
-const { ScoresApp } = require("../manage-scores/manage-scores-application");
+const {ScoresApp} = require("../manage-scores/manage-scores-application");
 const scoresApp = new ScoresApp();
-const { ModelsApp } = require("../model-propose/model-propose-application");
+const {ModelsApp} = require("../model-propose/model-propose-application");
 const modelsApp = new ModelsApp();
-const { EvalApp } = require("../eval-propose/eval-propose-application");
+const {EvalApp} = require("../eval-propose/eval-propose-application");
 const evalApp = new EvalApp();
 
 
@@ -15,6 +15,8 @@ const jsonParser = bodyParser.json();
 const port = 3000;
 
 const k = 2;
+const cycles = 2;
+let currentCycle = 0;
 const aggregatorPort = 5050
 
 const crypto = require("crypto");
@@ -44,14 +46,14 @@ async function newGrpcConnection() {
     const tlsCredentials = grpc.credentials.createSsl(tlsRootCert);
     return new grpc.Client(peerEndPoint, tlsCredentials, {
         'grpc.ssl_target_name_override': peerHostAlias,
-        'grpc.max_send_message_length' : 100 * 1024 * 1024,
-        'grpc.max_receive_message_length' : 100 * 1024 * 1024
+        'grpc.max_send_message_length': 100 * 1024 * 1024,
+        'grpc.max_receive_message_length': 100 * 1024 * 1024
     });
 }
 
 async function newIdentity() {
     const credentials = await fs.readFile(certPath);
-    return { mspId, credentials };
+    return {mspId, credentials};
 }
 
 async function newSigner() {
@@ -74,16 +76,16 @@ async function InitConnection(channelName, chaincodeName) {
         signer: await newSigner(),
         // Default timeouts for different gRPC calls
         evaluateOptions: () => {
-            return { deadline: Date.now() + 500000 }; // 5 seconds
+            return {deadline: Date.now() + 500000}; // 5 seconds
         },
         endorseOptions: () => {
-            return { deadline: Date.now() + 1500000 }; // 15 seconds
+            return {deadline: Date.now() + 1500000}; // 15 seconds
         },
         submitOptions: () => {
-            return { deadline: Date.now() + 500000 }; // 5 seconds
+            return {deadline: Date.now() + 500000}; // 5 seconds
         },
         commitStatusOptions: () => {
-            return { deadline: Date.now() + 6000000 }; // 1 minute
+            return {deadline: Date.now() + 6000000}; // 1 minute
         },
     });
 
@@ -100,8 +102,37 @@ async function startEvaluation() {
     console.log("Evaluation started.")
 }
 
+async function refreshStates() {
+    await modelsApp.deleteAllModels(contractModels);
+    await evalApp.deleteAllEvals(contractEval);
+}
+
+async function startCycle() {
+    currentCycle += 1;
+    if (currentCycle <= cycles) {
+        const assigned = await scoresApp.assignNodes(contractScores);
+        for (const server of assigned.servers) {
+            axios({
+                method: 'post',
+                url: `http://localhost:${server.port}/server/`,
+                headers: {},
+                data: {
+                    clients: assigned.clients[server.id],
+                    cycle: currentCycle
+                }
+            });
+        }
+        console.log(`*** CYCLE ${currentCycle} STARTED ***`);
+        console.log("Training started.");
+    } else {
+        console.log("All cycles completed.");
+        currentCycle = 0;
+    }
+}
+
 async function selectWinners() {
     const winners = await scoresApp.selectWinners(contractScores, k.toString());
+    console.log("Winners:")
     console.log(winners);
     await axios({
         method: 'post',
@@ -110,12 +141,16 @@ async function selectWinners() {
         data: winners
     });
     console.log("Aggregation completed.");
+    await refreshStates();
+    console.log(`*** CYCLE ${currentCycle} COMPLETED *** \n`);
+    await startCycle();
 }
 
-async function updateScores(){
+async function updateScores() {
     await evalApp.updateScores(contractEval);
     await selectWinners();
 }
+
 app.get('/', (req, res) => {
     res.send("Hello World!.");
 });
@@ -208,19 +243,8 @@ app.get('/api/evals/', async (req, res) => {
 
 // **** Admin ****
 app.get('/start/', async (req, res) => {
-    const assigned = await scoresApp.assignNodes(contractScores);
-    for (const server of assigned.servers) {
-        axios({
-            method: 'post',
-            url: `http://localhost:${server.port}/server/`,
-            headers: {},
-            data: {
-                clients: assigned.clients[server.id],
-            }
-        });
-    }
-    console.log("Training started.")
-    res.send("Training started.")
+    await startCycle();
+    res.send("Cycles started.")
 })
 
 app.listen(port, () => {

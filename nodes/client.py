@@ -77,7 +77,9 @@ class Client:
 
     def train(self, server_port):
         self.model.train()
+        losses = []
         for _ in range(self.epochs):
+            epoch_loss = 0
             for batch, (X, y) in enumerate(self.training_dataloader):
                 X = X.to(self.device)
                 output = self.model(X)
@@ -98,14 +100,16 @@ class Client:
                                         })
                     status = json.loads(res.content.decode())["status"]
                 grads = torch.tensor(json.loads(json.loads(res.content.decode())["grads"]))
+                epoch_loss += json.loads(res.content.decode())["loss"]
                 output.backward(grads)
                 self.optimizer.step()
                 self.optimizer.zero_grad()
-        
+            losses.append(epoch_loss/len(self.training_dataloader))
         torch.save(self.model.state_dict(), f"./models/node_{self.port-8000}_client.pth")
         requests.post(f"http://localhost:{server_port}/server/round/",
                                         json={
-                                            "client_port" : self.port
+                                            "client_port" : self.port,
+                                            "losses" : losses
                                         })
 
     def predict(self, path):

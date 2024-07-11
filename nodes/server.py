@@ -43,6 +43,7 @@ class Server:
         self.port = port
         self.rounds = 2
         self.current_round = 0
+        self.current_cycle = 0
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.lr = 3e-4
         self.avg_model = ServerNN().to(self.device)
@@ -80,8 +81,7 @@ class Server:
         loss.backward()
         optimizer.step()
         self.set_model(model, client_port)
-        self.losses[client_port][self.current_round].append(loss.item())
-        return clientOutputCPU.grad.clone().detach()
+        return clientOutputCPU.grad.clone().detach(), loss.item()
 
     def predict(self, clientOutputCPU, path):
         model = ServerNN().to(self.device)
@@ -125,7 +125,8 @@ class Server:
             weights_avg[k] = torch.div(weights_avg[k], len(clients))
         self.avg_model.load_state_dict(weights_avg)
 
-    def finish_round(self, client):
+    def finish_round(self, client, losses):
+        self.losses[self.current_cycle][client][self.current_round] = losses
         self.round_completion[client] = True
         for client, completed in self.round_completion.items():
             if not completed:
@@ -153,7 +154,6 @@ class Server:
 
         torch.save(self.avg_model.state_dict(), server_model_path)
 
-        # time.sleep((self.port-8000)/8)
         requests.post("http://localhost:3000/api/model/", json={
             "id": f"model_{self.port-8000}",
             "serverPath": server_model_path,
@@ -163,22 +163,23 @@ class Server:
         self.save_losses()
         print("Training Completed.")
 
-    def start(self, clients):
-        self.losses = {}
+    def start(self, clients, current_cycle):
+        self.current_cycle = current_cycle
+        self.losses[self.current_cycle] = {}
         self.clients = clients
         for client in self.clients:
-            self.losses[client] = {}
+            self.losses[self.current_cycle][client] = {}
             requests.get(f"http://localhost:{client}/client/load/")
         self.load_model()
+        self.current_round = 0
         self.start_round()
 
     def start_round(self):
         self.current_round += 1
         self.models = {}
-        # TODO: self.avg_model = self.load_model()
         for client in self.clients:
             self.models[client] = copy.deepcopy(self.avg_model)
-            self.losses[client][self.current_round] = []
+            self.losses[self.current_cycle][client][self.current_round] = []
             self.round_completion[client] = False
 
         for client in self.clients:

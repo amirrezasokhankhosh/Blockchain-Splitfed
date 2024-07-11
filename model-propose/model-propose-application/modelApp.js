@@ -56,6 +56,16 @@ class ModelsApp {
             return error;
         }
     }
+
+    async deleteAllModels(contract) {
+        try {
+            await (await contract).submitTransaction("DeleteAllModels");
+            return "All models were successfully deleted."
+        } catch(error) {
+            console.log(error)
+            return error;
+        }
+    }
 }
 
 module.exports = {

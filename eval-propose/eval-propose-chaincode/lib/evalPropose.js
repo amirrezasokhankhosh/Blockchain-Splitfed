@@ -101,6 +101,14 @@ class EvalPropose extends Contract {
         }
         return JSON.stringify(allResults);
     }
+
+    async DeleteAllEvals(ctx) {
+        const evalsString = await this.GetAllEvals(ctx);
+        const evals = JSON.parse(evalsString);
+        for (const evaluation of evals){
+            await ctx.stub.deleteState(evaluation.id);
+        }
+    }
 }
 
 module.exports = EvalPropose;

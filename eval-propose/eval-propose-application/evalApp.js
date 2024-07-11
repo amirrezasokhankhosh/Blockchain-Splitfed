@@ -67,6 +67,16 @@ class EvalApp {
             return error;
         }
     }
+
+    async deleteAllEvals(contract) {
+        try {
+            await (await contract).submitTransaction("DeleteAllEvals");
+            return "All evaluations were successfully deleted."
+        } catch(error) {
+            console.log(error)
+            return error;
+        }
+    }
 }
 
 module.exports = {
