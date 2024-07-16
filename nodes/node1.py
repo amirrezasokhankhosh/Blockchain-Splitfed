@@ -69,8 +69,12 @@ def round_completed():
 
 @app.route("/server/models/ready/")
 def models_ready():
-    executer.submit(server.evaluate, client)
-    # server.evaluate(client)
+    # executer.submit(server.evaluate, client)
+    try:
+        server.evaluate(client)
+    except Exception as e:
+        print(e)
+        raise Exception("error")
     return "done"
 
 @app.route("/server/", methods=['POST'])

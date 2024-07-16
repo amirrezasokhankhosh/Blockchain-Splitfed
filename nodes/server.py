@@ -41,7 +41,7 @@ class ServerNN(nn.Module):
 class Server:
     def __init__(self, port):
         self.port = port
-        self.rounds = 2
+        self.rounds = 3
         self.current_round = 0
         self.current_cycle = 0
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -71,7 +71,7 @@ class Server:
         model = self.get_model(client_port)
         optimizer = torch.optim.Adam(model.parameters(), lr=self.lr)
         loss_fn = nn.CrossEntropyLoss()
-        model.to(self.device)
+        model = model.to(self.device)
         targets = targets.to(self.device)
         optimizer.zero_grad()
         clientOutputCPU = torch.tensor(clientOutputCPU).requires_grad_(True)
@@ -80,16 +80,20 @@ class Server:
         loss = loss_fn(pred, targets)
         loss.backward()
         optimizer.step()
+        grad = clientOutputCPU.grad.clone().detach()
+        model = model.to("cpu")
+        torch.cuda.empty_cache()
         self.set_model(model, client_port)
-        return clientOutputCPU.grad.clone().detach(), loss.item()
+        return grad, loss.item()
 
     def predict(self, clientOutputCPU, path):
-        model = ServerNN().to(self.device)
+        torch.cuda.empty_cache()
+        model = ServerNN().to("cpu")
         model.load_state_dict(torch.load(path))
         model.eval()
         with torch.no_grad():
             clientOutputCPU = clientOutputCPU.clone().detach().requires_grad_(False)
-            clientOutput = clientOutputCPU.to(self.device)
+            clientOutput = clientOutputCPU.to("cpu")
             return model(clientOutput)
 
     def evaluate(self, client):
@@ -104,7 +108,7 @@ class Server:
                 for path in models["clientsPath"]:
                     outputs, targets = client.predict(path)
                     pred = self.predict(outputs, models["serverPath"])
-                    targets = targets.to(self.device)
+                    targets = targets.to("cpu")
                     loss = loss_fn(pred, targets)
                     name = re.findall(pattern, path)[0]
                     scores[name] = loss.item()
@@ -115,6 +119,7 @@ class Server:
             "id": f"eval_{self.port-8000}",
             "scores": scores
         })
+            
 
     def aggregate(self):
         clients = list(self.models.keys())
