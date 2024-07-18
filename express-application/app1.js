@@ -15,7 +15,7 @@ const jsonParser = bodyParser.json();
 const port = 3000;
 
 const k = 2;
-const cycles = 3;
+const cycles = 2;
 let currentCycle = 0;
 const aggregatorPort = 5050
 

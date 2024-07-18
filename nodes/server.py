@@ -41,7 +41,7 @@ class ServerNN(nn.Module):
 class Server:
     def __init__(self, port):
         self.port = port
-        self.rounds = 3
+        self.rounds = 2
         self.current_round = 0
         self.current_cycle = 0
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -119,7 +119,6 @@ class Server:
             "id": f"eval_{self.port-8000}",
             "scores": scores
         })
-            
 
     def aggregate(self):
         clients = list(self.models.keys())

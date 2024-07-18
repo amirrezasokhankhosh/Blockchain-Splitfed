@@ -22,16 +22,17 @@ class ClientNN(nn.Module):
 
 
 class Client:
-    def __init__(self, port):
+    def __init__(self, port, malicious=False):
         self.port = port
         self.batch_size = 128
-        self.epochs = 10
+        self.epochs = 1
         self.num_nodes = 9
         # self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.device = "cpu"
         self.model = ClientNN().to(self.device)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=3e-4)
         self.get_data()
+        self.malicious = malicious
 
     def get_data(self):
         training_dataset = datasets.CIFAR10(
@@ -77,12 +78,52 @@ class Client:
         return True
 
     def train(self, server_port):
-        self.model.train()
+        if self.malicious:
+            self.attack(server_port)
+        else:
+            self.model.train()
+            losses = []
+            for _ in range(self.epochs):
+                epoch_loss = 0
+                for batch, (X, y) in enumerate(self.training_dataloader):
+                    X = X.to(self.device)
+                    self.model = self.model.to(self.device)
+                    output = self.model(X)
+                    clientOutput = output.clone().detach().requires_grad_(True)
+                    res = requests.post(f"http://localhost:{server_port}/server/train/",
+                                        json={
+                                            "client_port" : self.port,
+                                            "batch": batch,
+                                            "clientOutput": json.dumps(clientOutput.tolist()),
+                                            "targets": json.dumps(y.tolist())
+                                        })
+                    status = json.loads(res.content.decode())["status"]
+                    while status == "In progress":
+                        time.sleep(0.1)
+                        res = requests.post(f"http://localhost:{server_port}/server/tasks/",
+                                            json={
+                                                "client_port" : self.port
+                                            })
+                        status = json.loads(res.content.decode())["status"]
+                    grads = torch.tensor(json.loads(json.loads(res.content.decode())["grads"])).to(self.device)
+                    epoch_loss += json.loads(res.content.decode())["loss"]
+                    output.backward(grads)
+                    self.optimizer.step()
+                    self.optimizer.zero_grad()
+                losses.append(epoch_loss/len(self.training_dataloader))
+            torch.save(self.model.state_dict(), f"./models/node_{self.port-8000}_client.pth")
+            requests.post(f"http://localhost:{server_port}/server/round/",
+                                            json={
+                                                "client_port" : self.port,
+                                                "losses" : losses
+                                            })
+    
+    def attack(self, server_port):
         losses = []
         for _ in range(self.epochs):
             epoch_loss = 0
             for batch, (X, y) in enumerate(self.training_dataloader):
-                X = X.to(self.device)
+                X = torch.randn_like(X).to(self.device)
                 self.model = self.model.to(self.device)
                 output = self.model(X)
                 clientOutput = output.clone().detach().requires_grad_(True)
@@ -101,14 +142,7 @@ class Client:
                                             "client_port" : self.port
                                         })
                     status = json.loads(res.content.decode())["status"]
-                grads = torch.tensor(json.loads(json.loads(res.content.decode())["grads"])).to(self.device)
                 epoch_loss += json.loads(res.content.decode())["loss"]
-                output.backward(grads)
-                self.optimizer.step()
-                self.optimizer.zero_grad()
-                X = X.cpu()
-                output = output.cpu()
-                torch.cuda.empty_cache()
             losses.append(epoch_loss/len(self.training_dataloader))
         torch.save(self.model.state_dict(), f"./models/node_{self.port-8000}_client.pth")
         requests.post(f"http://localhost:{server_port}/server/round/",
@@ -116,8 +150,7 @@ class Client:
                                             "client_port" : self.port,
                                             "losses" : losses
                                         })
-        self.model = self.model.to("cpu")
-
+        
     def predict(self, path):
         model = ClientNN().to("cpu")
         model.load_state_dict(torch.load(path))
