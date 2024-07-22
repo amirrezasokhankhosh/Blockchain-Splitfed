@@ -12,12 +12,11 @@ class ModelPropose extends Contract {
         this.mutex = new Mutex();
     }
 
-    async InitModels(ctx) {
-        const numServers = 3;
+    async InitModels(ctx, numServers) {
         const modelsInfo = {
             id : "modelsInfo",
-            numServers : numServers,
-            remaining : numServers
+            numServers : parseInt(numServers),
+            remaining : parseInt(numServers)
         }
         await ctx.stub.putState(modelsInfo.id, Buffer.from(stringify(sortKeysRecursive(modelsInfo))));
     }

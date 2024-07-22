@@ -7,9 +7,9 @@ class ModelsApp {
         this.utf8decoder = new TextDecoder();
     }
 
-    async initModels(contract) {
+    async initModels(contract, numServers) {
         try {
-            await (await contract).submitTransaction("InitModels");
+            await (await contract).submitTransaction("InitModels", numServers);
             return "Models ledger is successfully initialized.\n"
 
         } catch (error) {
@@ -18,8 +18,7 @@ class ModelsApp {
         }
     }
 
-    async createModel(contract, id, serverPath, modelsPath) {
-        let tries = 4;
+    async createModel(contract, id, serverPath, modelsPath, tries=5) {
         while (tries !== 0) {
             try {
                 const resBytes = await (await contract).submitTransaction("CreateModel", id, serverPath, modelsPath);

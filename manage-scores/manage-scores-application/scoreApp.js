@@ -7,9 +7,9 @@ class ScoresApp {
         this.utf8decoder = new TextDecoder();
     }
 
-    async initScores(contract) {
+    async initScores(contract, numServers, numClients) {
         try {
-            await (await contract).submitTransaction("InitScores");
+            await (await contract).submitTransaction("InitScores", numServers, numClients);
             return "Scores ledger is successfully initialized.\n"
 
         } catch (error) {

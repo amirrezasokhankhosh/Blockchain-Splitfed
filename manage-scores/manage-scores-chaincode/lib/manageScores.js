@@ -6,9 +6,9 @@ const {Contract} = require("fabric-contract-api");
 
 class ManageScores extends Contract {
 
-    async InitScores(ctx) {
-        const numServers = 3;
-        const numClients = 2;
+    async InitScores(ctx, numServers, numClients) {
+        numServers = parseInt(numServers);
+        numClients = parseInt(numClients);
         let numNodes = numServers * (numClients + 1);
         for (let i = 0; i < numNodes; i++) {
             const node = {

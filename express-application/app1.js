@@ -1,10 +1,16 @@
 'use strict';
 
-const {ScoresApp} = require("../manage-scores/manage-scores-application");
+const {
+    ScoresApp
+} = require("../manage-scores/manage-scores-application");
 const scoresApp = new ScoresApp();
-const {ModelsApp} = require("../model-propose/model-propose-application");
+const {
+    ModelsApp
+} = require("../model-propose/model-propose-application");
 const modelsApp = new ModelsApp();
-const {EvalApp} = require("../eval-propose/eval-propose-application");
+const {
+    EvalApp
+} = require("../eval-propose/eval-propose-application");
 const evalApp = new EvalApp();
 
 
@@ -17,11 +23,19 @@ const port = 3000;
 const k = 2;
 const cycles = 2;
 let currentCycle = 0;
-const aggregatorPort = 5050
+const aggregatorPort = 5050;
+const numServers = 3;
+const numClients = 2;
 
 const crypto = require("crypto");
 const grpc = require("@grpc/grpc-js");
-const {connect, Contract, Identity, Signer, signers} = require("@hyperledger/fabric-gateway");
+const {
+    connect,
+    Contract,
+    Identity,
+    Signer,
+    signers
+} = require("@hyperledger/fabric-gateway");
 const fs = require("fs/promises");
 const path = require("path");
 
@@ -53,7 +67,10 @@ async function newGrpcConnection() {
 
 async function newIdentity() {
     const credentials = await fs.readFile(certPath);
-    return {mspId, credentials};
+    return {
+        mspId,
+        credentials
+    };
 }
 
 async function newSigner() {
@@ -66,8 +83,8 @@ async function newSigner() {
 
 async function InitConnection(channelName, chaincodeName) {
     /*
-    * Returns a contract for a given channel and chaincode.
-    * */
+     * Returns a contract for a given channel and chaincode.
+     * */
     const client = await newGrpcConnection();
 
     const gateway = connect({
@@ -76,16 +93,24 @@ async function InitConnection(channelName, chaincodeName) {
         signer: await newSigner(),
         // Default timeouts for different gRPC calls
         evaluateOptions: () => {
-            return {deadline: Date.now() + 500000}; // 5 seconds
+            return {
+                deadline: Date.now() + 500000
+            }; // 5 seconds
         },
         endorseOptions: () => {
-            return {deadline: Date.now() + 1500000}; // 15 seconds
+            return {
+                deadline: Date.now() + 1500000
+            }; // 15 seconds
         },
         submitOptions: () => {
-            return {deadline: Date.now() + 500000}; // 5 seconds
+            return {
+                deadline: Date.now() + 500000
+            }; // 5 seconds
         },
         commitStatusOptions: () => {
-            return {deadline: Date.now() + 6000000}; // 1 minute
+            return {
+                deadline: Date.now() + 6000000
+            }; // 1 minute
         },
     });
 
@@ -155,8 +180,12 @@ app.get('/', (req, res) => {
     res.send("Hello World!.");
 });
 
+app.get('/exit', (req, res) => {
+    process.exit();
+});
+
 app.post('/api/scores/ledger/', async (req, res) => {
-    const message = await scoresApp.initScores(contractScores);
+    const message = await scoresApp.initScores(contractScores, numServers.toString(), numClients.toString());
     res.send(message);
 });
 
@@ -194,12 +223,12 @@ app.post('/api/select/', async (req, res) => {
 
 // **** MODEL PROPOSE API ****
 app.post('/api/models/ledger/', async (req, res) => {
-    const message = await modelsApp.initModels(contractModels);
+    const message = await modelsApp.initModels(contractModels, numServers.toString());
     res.send(message);
 });
 
 app.post('/api/model/', jsonParser, async (req, res) => {
-    const respond = await modelsApp.createModel(contractModels, req.body.id, req.body.serverPath, JSON.stringify(req.body.clientsPath));
+    const respond = await modelsApp.createModel(contractModels, req.body.id, req.body.serverPath, JSON.stringify(req.body.clientsPath), numServers + 1);
     if (respond === true) {
         setTimeout(startEvaluation, 1);
     }
@@ -219,12 +248,12 @@ app.get('/api/models/', async (req, res) => {
 
 // **** Eval Propose API ****
 app.post('/api/evals/ledger/', async (req, res) => {
-    const message = await evalApp.initLedger(contractEval);
+    const message = await evalApp.initLedger(contractEval, numServers.toString());
     res.send(message);
 });
 
 app.post('/api/eval/', jsonParser, async (req, res) => {
-    const respond = await evalApp.createEval(contractEval, req.body.id, JSON.stringify(req.body.scores));
+    const respond = await evalApp.createEval(contractEval, req.body.id, JSON.stringify(req.body.scores), numServers + 1);
     if (respond === true) {
         setTimeout(updateScores, 1);
     }

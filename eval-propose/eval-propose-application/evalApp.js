@@ -7,9 +7,9 @@ class EvalApp {
         this.utf8decoder = new TextDecoder();
     }
 
-    async initLedger(contract) {
+    async initLedger(contract, numServers) {
         try {
-            await (await contract).submitTransaction("InitLedger");
+            await (await contract).submitTransaction("InitLedger", numServers);
             return "Evaluation ledger is successfully initialized.\n"
 
         } catch (error) {
@@ -18,8 +18,7 @@ class EvalApp {
         }
     }
 
-    async createEval(contract, id, scores) {
-        let tries = 4;
+    async createEval(contract, id, scores, tries=5) {
         while (tries !== 0) {
             try {
                 const resBytes = await (await contract).submitTransaction("CreateEval", id, scores);

@@ -11,12 +11,11 @@ class EvalPropose extends Contract {
         this.mutex = new Mutex();
     }
 
-    async InitLedger(ctx) {
-        const numServers = 3;
+    async InitLedger(ctx, numServers) {
         const evalInfo = {
             id : "evalInfo",
-            numServers : numServers,
-            remaining : numServers
+            numServers : parseInt(numServers),
+            remaining : parseInt(numServers)
         }
         await ctx.stub.putState(evalInfo.id, Buffer.from(stringify(sortKeysRecursive(evalInfo))));
     }
