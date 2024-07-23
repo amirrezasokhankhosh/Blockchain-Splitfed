@@ -3,22 +3,54 @@ import torch.utils
 from global_var import *
 
 
+# class ClientNN(nn.Module):
+#     def __init__(self):
+#         super().__init__()
+#         self.conv_stack1 = nn.Sequential(
+#             nn.Conv2d(3, 32, kernel_size=(3, 3), padding="same"),
+#             nn.ReLU(),
+#             nn.BatchNorm2d(32),
+#             nn.Conv2d(32, 32, kernel_size=(3, 3), padding="same"),
+#             nn.ReLU(),
+#             nn.BatchNorm2d(32),
+#             nn.MaxPool2d((2, 2))
+#         )
+
+#     def forward(self, data):
+#         x = self.conv_stack1(data)
+#         return x
+
 class ClientNN(nn.Module):
     def __init__(self):
         super().__init__()
         self.conv_stack1 = nn.Sequential(
-            nn.Conv2d(3, 32, kernel_size=(3, 3), padding="same"),
-            nn.ReLU(),
-            nn.BatchNorm2d(32),
-            nn.Conv2d(32, 32, kernel_size=(3, 3), padding="same"),
-            nn.ReLU(),
-            nn.BatchNorm2d(32),
-            nn.MaxPool2d((2, 2))
+            nn.Conv2d(1, 96, kernel_size=(11, 11), stride=4, padding=2),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=(3, 3), stride=2),
+            nn.Conv2d(96, 256, kernel_size=(5, 5), stride=1, padding=2),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=(3, 3), stride=2)
         )
 
     def forward(self, data):
         x = self.conv_stack1(data)
         return x
+    
+
+class CustomImageDataset(Dataset):
+    def __init__(self, data):
+        x = torch.Tensor(np.array(data['x']).reshape((-1, 28, 28)))
+        resize_transform = transforms.Resize((224, 224))
+        self.x = torch.stack([resize_transform(img.unsqueeze(0)) for img in x])
+        self.y = torch.Tensor(np.array(data['y']))
+
+    def __len__(self):
+        return len(self.y)
+
+    def __getitem__(self, idx):
+        data = self.x[idx]
+        label = self.y[idx].long()
+        return data, label
 
 
 class Client:
@@ -34,38 +66,48 @@ class Client:
         self.get_data()
         self.malicious = malicious
 
+    # def get_data(self):
+    #     training_dataset = datasets.CIFAR10(
+    #         root="data",
+    #         train=False,
+    #         download=False,
+    #         transform=ToTensor()
+    #     )
+    #     test_dataset = datasets.CIFAR10(
+    #         root="data",
+    #         train=False,
+    #         download=False,
+    #         transform=ToTensor()
+    #     )
+    #     data_portion = len(training_dataset) // self.num_nodes
+    #     start_index = (self.port - 8000) * data_portion
+    #     end_index = (self.port - 8000 + 1) * data_portion
+    #     indexes = list(range(start_index, end_index))
+
+    #     test_portion = len(test_dataset) // self.num_nodes
+    #     test_start_index = (self.port - 8000) * test_portion
+    #     test_end_index = (self.port - 8000 + 1) * test_portion
+    #     test_indexes = list(range(test_start_index, test_end_index))
+
+    #     self.training_dataset = torch.utils.data.Subset(training_dataset, indexes)
+    #     self.test_dataset = torch.utils.data.Subset(test_dataset, test_indexes)
+
+    #     self.training_dataloader = DataLoader(
+    #         self.training_dataset, batch_size=self.batch_size)
+    #     self.test_dataloader = DataLoader(
+    #         self.test_dataset, batch_size=test_portion)
+
     def get_data(self):
-        training_dataset = datasets.CIFAR10(
-            root="data",
-            train=True,
-            download=False,
-            transform=ToTensor()
-        )
-        test_dataset = datasets.CIFAR10(
-            root="data",
-            train=True,
-            download=False,
-            transform=ToTensor()
-        )
-        data_portion = len(training_dataset) // self.num_nodes
-        start_index = (self.port - 8000) * data_portion
-        end_index = (self.port - 8000 + 1) * data_portion
-        indexes = list(range(start_index, end_index))
+        train_file = open(f"./data/femnist/train/node{self.port-8000}.json", "r")
+        train_data = json.loads(train_file.read())
+        test_file = open(f"./data/femnist/test/node{self.port-8000}.json", "r")
+        test_data = json.loads(test_file.read())
+        self.training_dataset, self.test_dataset = CustomImageDataset(train_data), CustomImageDataset(test_data)
+        self.training_dataloader = DataLoader(self.training_dataset, batch_size=self.batch_size)
+        self.test_dataloader = DataLoader(self.test_dataset, batch_size=len(self.test_dataset))
 
-        test_portion = len(test_dataset) // self.num_nodes
-        test_start_index = (self.port - 8000) * test_portion
-        test_end_index = (self.port - 8000 + 1) * test_portion
-        test_indexes = list(range(test_start_index, test_end_index))
 
-        self.training_dataset = torch.utils.data.Subset(training_dataset, indexes)
-        self.test_dataset = torch.utils.data.Subset(test_dataset, test_indexes)
-
-        self.training_dataloader = DataLoader(
-            self.training_dataset, batch_size=self.batch_size)
-        self.test_dataloader = DataLoader(
-            self.test_dataset, batch_size=test_portion)
-
-    def load_model(self):
+    def load_model(self): 
         self.model.load_state_dict(torch.load("./models/global_client.pth"))
 
     def are_models_equal(self, model1, model2):

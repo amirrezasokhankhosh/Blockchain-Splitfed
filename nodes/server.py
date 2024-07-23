@@ -2,41 +2,70 @@ from global_var import *
 import torch.nn.functional as F
 
 
+# class ServerNN(nn.Module):
+#     def __init__(self):
+#         super().__init__()
+#         self.conv_stack2 = nn.Sequential(
+#             nn.Conv2d(32, 64, kernel_size=(3, 3), padding="same"),
+#             nn.ReLU(),
+#             nn.BatchNorm2d(64),
+#             nn.Conv2d(64, 64, kernel_size=(3, 3), padding="same"),
+#             nn.ReLU(),
+#             nn.BatchNorm2d(64),
+#             nn.MaxPool2d((2, 2))
+#         )
+
+#         self.conv_stack3 = nn.Sequential(
+#             nn.Conv2d(64, 128, kernel_size=(3, 3), padding="same"),
+#             nn.ReLU(),
+#             nn.BatchNorm2d(128),
+#             nn.Conv2d(128, 128, kernel_size=(3, 3), padding="same"),
+#             nn.ReLU(),
+#             nn.BatchNorm2d(128),
+#             nn.MaxPool2d((2, 2))
+#         )
+
+#         self.classification_stack = nn.Sequential(
+#             nn.Flatten(),
+#             nn.Dropout(),
+#             nn.Linear(4*4*128, 10),
+#             nn.Softmax(1)
+#         )
+
+#     def forward(self, data):
+#         x = self.conv_stack2(data)
+#         x = self.conv_stack3(x)
+#         return self.classification_stack(x)
+
 class ServerNN(nn.Module):
     def __init__(self):
         super().__init__()
         self.conv_stack2 = nn.Sequential(
-            nn.Conv2d(32, 64, kernel_size=(3, 3), padding="same"),
-            nn.ReLU(),
-            nn.BatchNorm2d(64),
-            nn.Conv2d(64, 64, kernel_size=(3, 3), padding="same"),
-            nn.ReLU(),
-            nn.BatchNorm2d(64),
-            nn.MaxPool2d((2, 2))
-        )
-
-        self.conv_stack3 = nn.Sequential(
-            nn.Conv2d(64, 128, kernel_size=(3, 3), padding="same"),
-            nn.ReLU(),
-            nn.BatchNorm2d(128),
-            nn.Conv2d(128, 128, kernel_size=(3, 3), padding="same"),
-            nn.ReLU(),
-            nn.BatchNorm2d(128),
-            nn.MaxPool2d((2, 2))
+            nn.Conv2d(256, 384, kernel_size=(3, 3), stride=1, padding=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(384, 384, kernel_size=(3, 3), stride=1, padding=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(384, 256, kernel_size=(3, 3), stride=1, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=(3, 3), stride=2)
         )
 
         self.classification_stack = nn.Sequential(
             nn.Flatten(),
-            nn.Dropout(),
-            nn.Linear(4*4*128, 10),
+            nn.Linear(6*6*256, 4096),
+            nn.ReLU(inplace=True),
+            nn.Dropout(p=0.5),
+            nn.Linear(4096, 4096),
+            nn.ReLU(inplace=True),
+            nn.Dropout(p=0.5),
+            nn.Linear(4096, 62),
             nn.Softmax(1)
         )
 
     def forward(self, data):
         x = self.conv_stack2(data)
-        x = self.conv_stack3(x)
         return self.classification_stack(x)
-
+    
 
 class Server:
     def __init__(self, port):
