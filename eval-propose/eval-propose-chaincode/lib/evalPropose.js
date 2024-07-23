@@ -12,7 +12,7 @@ class EvalPropose extends Contract {
     }
 
     async InitLedger(ctx) {
-        const numServers = 3;
+        const numServers = 4;
         const evalInfo = {
             id : "evalInfo",
             numServers : numServers,

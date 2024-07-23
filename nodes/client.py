@@ -25,8 +25,8 @@ class Client:
     def __init__(self, port, malicious=False):
         self.port = port
         self.batch_size = 128
-        self.epochs = 1
-        self.num_nodes = 9
+        self.epochs = 20
+        self.num_nodes = 12
         # self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.device = "cpu"
         self.model = ClientNN().to(self.device)

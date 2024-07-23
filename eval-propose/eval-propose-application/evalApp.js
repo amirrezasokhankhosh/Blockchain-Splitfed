@@ -19,7 +19,7 @@ class EvalApp {
     }
 
     async createEval(contract, id, scores) {
-        let tries = 4;
+        let tries = 5;
         while (tries !== 0) {
             try {
                 const resBytes = await (await contract).submitTransaction("CreateEval", id, scores);

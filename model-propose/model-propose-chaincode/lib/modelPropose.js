@@ -13,7 +13,7 @@ class ModelPropose extends Contract {
     }
 
     async InitModels(ctx) {
-        const numServers = 3;
+        const numServers = 4;
         const modelsInfo = {
             id : "modelsInfo",
             numServers : numServers,

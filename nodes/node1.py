@@ -4,10 +4,10 @@ from server import Server
 
 
 port = 8001
-num_clients = 3
+num_clients = 4
 futures = {}
 executer = concurrent.futures.ThreadPoolExecutor(num_clients+1)
-client = Client(port, malicious=True)
+client = Client(port)
 server = Server(port)
 app = Flask(__name__)
 
