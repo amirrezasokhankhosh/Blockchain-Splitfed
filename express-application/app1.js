@@ -159,6 +159,7 @@ async function selectWinners() {
     const winners = await scoresApp.selectWinners(contractScores, k.toString());
     console.log("Winners:")
     console.log(winners);
+    winners.numNodes = numServers * (numClients + 1);
     await axios({
         method: 'post',
         url: `http://localhost:${aggregatorPort}/aggregate/`,

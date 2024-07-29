@@ -1,8 +1,28 @@
 from global_var import *
 
 
-executer = concurrent.futures.ThreadPoolExecutor(2)
+executer = concurrent.futures.ThreadPoolExecutor(3)
 app = Flask(__name__)
+
+def get_data(num_nodes):
+    test_file = open(f"./data/femnist/test/node{num_nodes}.json", "r")
+    test_data = json.loads(test_file.read())
+    test_dataset = CustomImageDataset(test_data)
+    return DataLoader(test_dataset, batch_size=len(test_dataset))
+
+def evaluate(num_nodes):
+    test_dataloader = get_data(num_nodes)
+    client_model = ClientNN().to("cpu").load_state_dict(torch.load("./models/global_client.pth"))
+    server_model = ServerNN().to("cpu").load_state_dict(torch.load("./models/global_server.pth"))
+    loss_fn = nn.CrossEntropyLoss()
+    client_model.eval()
+    server_model.eval()
+    with torch.no_grad():
+        for X, y in test_dataloader:
+            X = X.to("cpu")
+            outputs = server_model(client_model(X))
+            loss = loss_fn(outputs, y)
+            print(loss)
 
 
 def aggregate_models(models):
@@ -28,9 +48,10 @@ def aggregate_splitfed(server_names, client_names):
 def aggregate():
     servers = request.get_json()["servers"]
     clients = request.get_json()["clients"]
-    return aggregate_splitfed(servers, clients)
-    # executer.submit(aggregate_weights, models)
-    # return "aggregation started."
+    num_nodes = request.get_json()["numNodes"]
+    msg = aggregate_splitfed(servers, clients)
+    executer.submit(evaluate, num_nodes)
+    return msg
 
 
 @app.route("/exit/")
