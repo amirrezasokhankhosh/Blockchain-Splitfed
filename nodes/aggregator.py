@@ -2,18 +2,38 @@ from global_var import *
 
 
 executer = concurrent.futures.ThreadPoolExecutor(3)
+losses = []
 app = Flask(__name__)
 
+# def get_data(num_nodes):
+#     test_file = open(f"./data/femnist/test/node{num_nodes}.json", "r")
+#     test_data = json.loads(test_file.read())
+#     test_dataset = CustomImageDataset(test_data)
+#     return DataLoader(test_dataset, batch_size=len(test_dataset))
+
 def get_data(num_nodes):
-    test_file = open(f"./data/femnist/test/node{num_nodes}.json", "r")
-    test_data = json.loads(test_file.read())
-    test_dataset = CustomImageDataset(test_data)
-    return DataLoader(test_dataset, batch_size=len(test_dataset))
+    test_dataset = datasets.CIFAR10(
+        root="data",
+        train=False,
+        download=False,
+        transform=ToTensor()
+    )
+
+    test_portion = len(test_dataset) // 9
+    test_start_index = 0
+    test_end_index = test_portion
+    test_indexes = list(range(test_start_index, test_end_index))
+
+    test_dataset = torch.utils.data.Subset(test_dataset, test_indexes)
+    return DataLoader(test_dataset, batch_size=test_portion)
+
 
 def evaluate(num_nodes):
     test_dataloader = get_data(num_nodes)
-    client_model = ClientNN().to("cpu").load_state_dict(torch.load("./models/global_client.pth"))
-    server_model = ServerNN().to("cpu").load_state_dict(torch.load("./models/global_server.pth"))
+    client_model = ClientNN().to("cpu")
+    client_model.load_state_dict(torch.load("./models/global_client.pth"))
+    server_model = ServerNN().to("cpu")
+    server_model.load_state_dict(torch.load("./models/global_server.pth"))
     loss_fn = nn.CrossEntropyLoss()
     client_model.eval()
     server_model.eval()
@@ -22,7 +42,7 @@ def evaluate(num_nodes):
             X = X.to("cpu")
             outputs = server_model(client_model(X))
             loss = loss_fn(outputs, y)
-            print(loss)
+            losses.append(loss.item())
 
 
 def aggregate_models(models):
@@ -43,6 +63,12 @@ def aggregate_splitfed(server_names, client_names):
     torch.save(global_client, "./models/global_client.pth")
     return "Aggregation completed."
 
+@app.route("/losses/")
+def save_losses():
+    file = open(f"./losses/aggregator.json", "w")
+    file.write(json.dumps(losses))
+    return "done"
+
 
 @app.route("/aggregate/", methods=['POST'])
 def aggregate():
@@ -50,7 +76,7 @@ def aggregate():
     clients = request.get_json()["clients"]
     num_nodes = request.get_json()["numNodes"]
     msg = aggregate_splitfed(servers, clients)
-    executer.submit(evaluate, num_nodes)
+    evaluate(num_nodes)
     return msg
 
 

@@ -12,6 +12,7 @@ const {
     EvalApp
 } = require("../eval-propose/eval-propose-application");
 const evalApp = new EvalApp();
+const fileService = require('node:fs');
 
 
 const express = require('express');
@@ -21,11 +22,14 @@ const jsonParser = bodyParser.json();
 const port = 3000;
 
 const k = 2;
-const cycles = 2;
+const cycles = 10;
 let currentCycle = 0;
 const aggregatorPort = 5050;
 const numServers = 3;
 const numClients = 2;
+let startTime = 0
+let endTime = 0
+let cycleTimes = {}
 
 const crypto = require("crypto");
 const grpc = require("@grpc/grpc-js");
@@ -132,9 +136,20 @@ async function refreshStates() {
     await evalApp.deleteAllEvals(contractEval);
 }
 
+function saveCycleTimes() {
+    fileService.writeFile("./cycleTimes.json", JSON.stringify(cycleTimes), error => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log("Cycle trip times is saved.");
+        }
+    });
+}
+
 async function startCycle() {
     currentCycle += 1;
     if (currentCycle <= cycles) {
+        startTime = Date.now();
         const assigned = await scoresApp.assignNodes(contractScores);
         for (const server of assigned.servers) {
             axios({
@@ -150,9 +165,16 @@ async function startCycle() {
         console.log(`*** CYCLE ${currentCycle} STARTED ***`);
         console.log("Training started.");
     } else {
+        saveCycleTimes()
+        await axios.get(`http://localhost:${aggregatorPort}/losses/`);
         console.log("All cycles completed.");
         currentCycle = 0;
     }
+}
+
+function computeCycleTime() {
+    const cycleTime = (endTime - startTime) / (1000 * 60);
+    cycleTimes[currentCycle.toString()] = cycleTime;
 }
 
 async function selectWinners() {
@@ -168,6 +190,8 @@ async function selectWinners() {
     });
     console.log("Aggregation completed.");
     await refreshStates();
+    endTime = Date.now()
+    computeCycleTime();
     console.log(`*** CYCLE ${currentCycle} COMPLETED *** \n`);
     await startCycle();
 }
