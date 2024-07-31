@@ -32,20 +32,55 @@ class ManageScores extends Contract {
         let roundInfoString = await this.ReadScore(ctx, "roundInfo");
         let roundInfo = JSON.parse(roundInfoString);
         let numNodes = roundInfo.numServers * (roundInfo.numClients + 1);
+        let prevServers = roundInfo.servers;
         roundInfo.servers = [];
         roundInfo.clients = {};
 
         const scoresString = await this.GetAllScores(ctx);
-        const scores = JSON.parse(scoresString);
+        let scores = JSON.parse(scoresString);
         scores.sort((a, b) => (a.score > b.score ? 1 : -1));
+        
+        let prevScores = [];
+        let i = 0;
+        let found = false
+        while (i < numNodes - prevServers.length) {
+            found = false
+            for (let j = 0 ; j < prevServers.length ; j++) {
+                if (scores[i].id === prevServers[j].id) {
+                    let prevScore = scores.splice(i, 1);
+                    prevScores.push(prevScore[0]);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                i++;
+            }
+        }
+
         let j = 0;
+        let pointer1 = 0;
+        let pointer2 = 0;
         for (let i = 0 ; i < numNodes ; i++) {
             if (i < roundInfo.numServers) {
                 roundInfo.clients[scores[i].id] = [];
                 roundInfo.servers.push(scores[i]);
+                pointer1 = i + 1
             } else {
                 let currentServer = roundInfo.servers[j].id;
-                roundInfo.clients[currentServer].push(scores[i]);
+                if (pointer2 === prevServers.length) {
+                    roundInfo.clients[currentServer].push(scores[pointer1]);
+                    pointer1++;
+                } else if (pointer1 === numNodes) {
+                    roundInfo.clients[currentServer].push(scores[pointer2]);
+                    pointer2++;
+                } else if (scores[pointer1].score <= prevScores[pointer2].score) {
+                    roundInfo.clients[currentServer].push(scores[pointer1]);
+                    pointer1++;
+                } else {
+                    roundInfo.clients[currentServer].push(prevScores[pointer2]);
+                    pointer2++;
+                }
                 if (roundInfo.clients[currentServer].length === roundInfo.numClients) {
                     j = j + 1;
                 }
