@@ -12,7 +12,7 @@ app = Flask(__name__)
 #     return DataLoader(test_dataset, batch_size=len(test_dataset))
 
 def get_data(num_nodes):
-    test_dataset = datasets.CIFAR10(
+    test_dataset = datasets.FashionMNIST(
         root="data",
         train=False,
         download=False,
@@ -53,9 +53,9 @@ def aggregate_models(models):
 
 
 def aggregate_splitfed(server_names, client_names):
-    servers = [torch.load(f"./models/{server_name}_server.pth")
+    servers = [torch.load(f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/blockchain_split_fed/models/{server_name}_server.pth")
                for server_name in server_names]
-    clients = [torch.load(f"./models/{client_name}_client.pth")
+    clients = [torch.load(f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/blockchain_split_fed/models/{client_name}_client.pth")
                for client_name in client_names]
     global_server = aggregate_models(servers)
     global_client = aggregate_models(clients)
@@ -65,7 +65,7 @@ def aggregate_splitfed(server_names, client_names):
 
 @app.route("/losses/")
 def save_losses():
-    file = open(f"./losses/aggregator.json", "w")
+    file = open(f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/blockchain_split_fed/losses/aggregator.json", "w")
     file.write(json.dumps(losses))
     return "done"
 

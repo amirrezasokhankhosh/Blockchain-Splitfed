@@ -1,54 +1,24 @@
-from global_var import *
-import torch.nn.functional as F
+import os
+import re
+import copy
+import json
+import torch
+import requests
+import threading
+import numpy as np
+from torch import nn
 
-# My Model
-class ServerNN(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.conv_stack2 = nn.Sequential(
-            nn.Conv2d(32, 64, kernel_size=(3, 3), padding="same"),
-            nn.ReLU(),
-            nn.BatchNorm2d(64),
-            nn.Conv2d(64, 64, kernel_size=(3, 3), padding="same"),
-            nn.ReLU(),
-            nn.BatchNorm2d(64),
-            nn.MaxPool2d((2, 2))
-        )
-
-        self.conv_stack3 = nn.Sequential(
-            nn.Conv2d(64, 128, kernel_size=(3, 3), padding="same"),
-            nn.ReLU(),
-            nn.BatchNorm2d(128),
-            nn.Conv2d(128, 128, kernel_size=(3, 3), padding="same"),
-            nn.ReLU(),
-            nn.BatchNorm2d(128),
-            nn.MaxPool2d((2, 2))
-        )
-
-        self.classification_stack = nn.Sequential(
-            nn.Flatten(),
-            nn.Dropout(),
-            nn.Linear(4*4*128, 10),
-            nn.Softmax(1)
-        )
-
-    def forward(self, data):
-        x = self.conv_stack2(data)
-        x = self.conv_stack3(x)
-        return self.classification_stack(x)
-
-
-    
 
 class Server:
-    def __init__(self, port):
+    def __init__(self, port, ServerNN):
         self.port = port
         self.rounds = 3
         self.current_round = 0
         self.current_cycle = 0
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.lr = 3e-4
-        self.avg_model = ServerNN().to(self.device)
+        self.ServerNN = ServerNN
+        self.avg_model = self.ServerNN().to(self.device)
         self.models = {}
         self.losses = {}
         self.round_completion = {}
@@ -90,7 +60,7 @@ class Server:
 
     def predict(self, clientOutputCPU, path):
         torch.cuda.empty_cache()
-        model = ServerNN().to("cpu")
+        model = self.ServerNN().to("cpu")
         model.load_state_dict(torch.load(path))
         model.eval()
         with torch.no_grad():

@@ -1,50 +1,37 @@
-import torch.utils
-import torch.utils
-from global_var import *
-
-
-# My Model
-class ClientNN(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.conv_stack1 = nn.Sequential(
-            nn.Conv2d(3, 32, kernel_size=(3, 3), padding="same"),
-            nn.ReLU(),
-            nn.BatchNorm2d(32),
-            nn.Conv2d(32, 32, kernel_size=(3, 3), padding="same"),
-            nn.ReLU(),
-            nn.BatchNorm2d(32),
-            nn.MaxPool2d((2, 2))
-        )
-
-    def forward(self, data):
-        x = self.conv_stack1(data)
-        return x
+import time
+import json
+import torch
+import requests
+from torch import nn
+from torchvision import datasets
+from torch.utils.data import DataLoader
+from torchvision.transforms import ToTensor
 
 
 
 class Client:
-    def __init__(self, port, malicious=False):
+    def __init__(self, port, ClientNN, malicious=False):
         self.port = port
         self.batch_size = 128
-        self.epochs = 3
+        self.epochs = 5
         self.num_nodes = 9
         # self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.device = "cpu"
-        self.model = ClientNN().to(self.device)
+        self.ClientNN = ClientNN
+        self.model = self.ClientNN().to(self.device)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=3e-4)
         self.get_data()
         self.malicious = malicious
 
-    #CIFAR10
+    #CIFAR10 or Fas
     def get_data(self):
-        training_dataset = datasets.CIFAR10(
+        training_dataset = datasets.FashionMNIST(
             root="data",
             train=False,
             download=False,
             transform=ToTensor()
         )
-        test_dataset = datasets.CIFAR10(
+        test_dataset = datasets.FashionMNIST(
             root="data",
             train=False,
             download=False,
@@ -125,7 +112,7 @@ class Client:
                     self.optimizer.step()
                     self.optimizer.zero_grad()
                 losses.append(epoch_loss/len(self.training_dataloader))
-            torch.save(self.model.state_dict(), f"./models/node_{self.port-8000}_client.pth")
+            torch.save(self.model.state_dict(), f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/blockchain_split_fed/models/node_{self.port-8000}_client.pth")
             requests.post(f"http://localhost:{server_port}/server/round/",
                                             json={
                                                 "client_port" : self.port,
@@ -158,7 +145,7 @@ class Client:
                     status = json.loads(res.content.decode())["status"]
                 epoch_loss += json.loads(res.content.decode())["loss"]
             losses.append(epoch_loss/len(self.training_dataloader))
-        torch.save(self.model.state_dict(), f"./models/node_{self.port-8000}_client.pth")
+        torch.save(self.model.state_dict(), f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/blockchain_split_fed/models/node_{self.port-8000}_client.pth")
         requests.post(f"http://localhost:{server_port}/server/round/",
                                         json={
                                             "client_port" : self.port,
@@ -166,7 +153,7 @@ class Client:
                                         })
         
     def predict(self, path):
-        model = ClientNN().to("cpu")
+        model = self.ClientNN().to("cpu")
         model.load_state_dict(torch.load(path))
         model.eval()
         with torch.no_grad():

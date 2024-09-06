@@ -1,14 +1,17 @@
 from global_var import *
-from client import Client
-from server import Server
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from blockchain_split_fed.client import Client
+from blockchain_split_fed.server import Server
 
 
 port = 8001
 num_clients = 3
 futures = {}
 executer = concurrent.futures.ThreadPoolExecutor(num_clients+1)
-client = Client(port)
-server = Server(port)
+client = Client(port, ClientNN)
+server = Server(port, ServerNN)
 app = Flask(__name__)
 
 
