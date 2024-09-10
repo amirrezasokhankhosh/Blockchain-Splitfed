@@ -27,14 +27,14 @@ class Client:
     def get_data(self):
         training_dataset = datasets.FashionMNIST(
             root="data",
-            train=False,
-            download=False,
+            train=True,
+            download=True,
             transform=ToTensor()
         )
         test_dataset = datasets.FashionMNIST(
             root="data",
             train=False,
-            download=False,
+            download=True,
             transform=ToTensor()
         )
         data_portion = len(training_dataset) // self.num_nodes
@@ -112,7 +112,7 @@ class Client:
                     self.optimizer.step()
                     self.optimizer.zero_grad()
                 losses.append(epoch_loss/len(self.training_dataloader))
-            torch.save(self.model.state_dict(), f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/blockchain_split_fed/models/node_{self.port-8000}_client.pth")
+            torch.save(self.model.state_dict(), f"/home/cs/grad/sokhanka/Documents/splitfed/blockchain_split_fed/models/node_{self.port-8000}_client.pth")
             requests.post(f"http://localhost:{server_port}/server/round/",
                                             json={
                                                 "client_port" : self.port,
@@ -145,7 +145,7 @@ class Client:
                     status = json.loads(res.content.decode())["status"]
                 epoch_loss += json.loads(res.content.decode())["loss"]
             losses.append(epoch_loss/len(self.training_dataloader))
-        torch.save(self.model.state_dict(), f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/blockchain_split_fed/models/node_{self.port-8000}_client.pth")
+        torch.save(self.model.state_dict(), f"/home/cs/grad/sokhanka/Documents/splitfed/blockchain_split_fed/models/node_{self.port-8000}_client.pth")
         requests.post(f"http://localhost:{server_port}/server/round/",
                                         json={
                                             "client_port" : self.port,
