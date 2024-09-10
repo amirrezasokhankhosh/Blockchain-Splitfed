@@ -69,15 +69,6 @@ class Client:
     def load_model(self): 
         self.model.load_state_dict(torch.load("./models/global_client.pth"))
 
-    def are_models_equal(self, model1, model2):
-        model1_state_dict = model1.state_dict()
-        model2_state_dict = model2.state_dict()
-        
-        for key in model1_state_dict:
-            if not torch.equal(model1_state_dict[key], model2_state_dict[key]):
-                return False
-        return True
-
     def train(self, server_port):
         if self.malicious:
             self.attack(server_port)
@@ -112,7 +103,7 @@ class Client:
                     self.optimizer.step()
                     self.optimizer.zero_grad()
                 losses.append(epoch_loss/len(self.training_dataloader))
-            torch.save(self.model.state_dict(), f"./models/node_{self.port-8000}_client.pth")
+            torch.save(self.model.state_dict(), f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/models/node_{self.port-8000}_client.pth")
             requests.post(f"http://localhost:{server_port}/server/round/",
                                             json={
                                                 "client_port" : self.port,
@@ -145,7 +136,7 @@ class Client:
                     status = json.loads(res.content.decode())["status"]
                 epoch_loss += json.loads(res.content.decode())["loss"]
             losses.append(epoch_loss/len(self.training_dataloader))
-        torch.save(self.model.state_dict(), f"./models/node_{self.port-8000}_client.pth")
+        torch.save(self.model.state_dict(), f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/models/node_{self.port-8000}_client.pth")
         requests.post(f"http://localhost:{server_port}/server/round/",
                                         json={
                                             "client_port" : self.port,

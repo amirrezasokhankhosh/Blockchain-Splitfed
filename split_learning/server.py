@@ -10,9 +10,10 @@ from torch import nn
 
 
 class Server:
-    def __init__(self, port, ServerNN):
+    def __init__(self, port, ServerNN, client):
         self.port = port
-        self.rounds = 3
+        self.client = client
+        self.rounds = 60
         self.current_round = 0
         self.current_cycle = 0
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -21,6 +22,7 @@ class Server:
         self.avg_model = self.ServerNN().to(self.device)
         self.models = {}
         self.losses = {}
+        self.scores = []
         self.round_completion = {}
         self.semaphore = threading.Semaphore(1)
 
@@ -30,10 +32,6 @@ class Server:
     def get_model(self, client_port):
         with self.semaphore:
             return self.models[client_port]
-
-    def get_submitted_models(self):
-        res = requests.get(f"http://localhost:3000/api/models/")
-        return json.loads(res.content)
 
     def set_model(self, model, client_port):
         with self.semaphore:
@@ -58,39 +56,29 @@ class Server:
         self.set_model(model, client_port)
         return grad, loss.item()
 
-    def predict(self, clientOutputCPU, path):
+    def predict(self, clientOutputCPU):
         torch.cuda.empty_cache()
-        model = self.ServerNN().to("cpu")
-        model.load_state_dict(torch.load(path))
-        model.eval()
+        self.avg_model.eval()
         with torch.no_grad():
             clientOutputCPU = clientOutputCPU.clone().detach().requires_grad_(False)
             clientOutput = clientOutputCPU.to("cpu")
-            return model(clientOutput)
+            return self.avg_model(clientOutput)
 
-    def evaluate(self, client):
-        models_path = self.get_submitted_models()
+    def evaluate(self):
+        models_path = [f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/models/node_{client_port-8000}_client.pth"
+               for client_port in self.clients]
         loss_fn = nn.CrossEntropyLoss()
         pattern = r'node_\d+'
         scores = {}
-        for models in models_path:
-            server_name = re.findall(pattern, models["serverPath"])[0]
-            if server_name != f"node_{self.port-8000}":
-                client_scores = []
-                for path in models["clientsPath"]:
-                    outputs, targets = client.predict(path)
-                    pred = self.predict(outputs, models["serverPath"])
-                    targets = targets.to("cpu")
-                    loss = loss_fn(pred, targets)
-                    name = re.findall(pattern, path)[0]
-                    scores[name] = loss.item()
-                    client_scores.append(loss.item())
-                scores[server_name] = np.median(client_scores)
-        print(scores)
-        requests.post("http://localhost:3000/api/eval/", json={
-            "id": f"eval_{self.port-8000}",
-            "scores": scores
-        })
+        for path in models_path:
+            outputs, targets = self.client.predict(path)
+            pred = self.predict(outputs)
+            targets = targets.to("cpu")
+            loss = loss_fn(pred, targets)
+            name = re.findall(pattern, path)[0]
+            scores[name] = loss.item()
+        score = np.median(list(scores.values())).item()
+        self.scores.append(score)
 
     def aggregate(self):
         clients = list(self.models.keys())
@@ -102,12 +90,13 @@ class Server:
         self.avg_model.load_state_dict(weights_avg)
 
     def finish_round(self, client, losses):
-        self.losses[self.current_cycle][client][self.current_round] = losses
+        self.losses[client][self.current_round] = losses
         self.round_completion[client] = True
         for client, completed in self.round_completion.items():
             if not completed:
                 return
         self.aggregate()
+        self.evaluate()
         if self.current_round != self.rounds:
             self.start_round()
         else:
@@ -117,37 +106,27 @@ class Server:
         cwd = os.path.dirname(__file__)
         model_name = f"node_{self.port-8000}_server"
         server_model_path = os.path.abspath(
-            os.path.join(cwd, f"./models/{model_name}.pth"))
+            os.path.join(cwd, f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/models/{model_name}.pth"))
         client_models_path = []
         for client in self.clients:
             model_name = f"node_{client-8000}_client"
             client_models_path.append(os.path.abspath(
-                os.path.join(cwd, f"./models/{model_name}.pth")))
+                os.path.join(cwd, f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/models/{model_name}.pth")))
         return server_model_path, client_models_path
 
     def finish_training(self):
+        print("Here!")
         server_model_path, client_models_path = self.get_model_paths()
 
         torch.save(self.avg_model.state_dict(), server_model_path)
 
-        requests.post("http://localhost:3000/api/model/", json={
-            "id": f"model_{self.port-8000}",
-            "serverPath": server_model_path,
-            "clientsPath": client_models_path
-        })
-
         self.save_losses()
         print("Training Completed.")
 
-    def start(self, clients, current_cycle):
-        self.current_cycle = current_cycle
-        self.losses[self.current_cycle] = {}
+    def start(self, clients, cycle):
         self.clients = clients
         for client in self.clients:
-            self.losses[self.current_cycle][client] = {}
-            requests.get(f"http://localhost:{client}/client/load/")
-        self.load_model()
-        self.current_round = 0
+            self.losses[client] = {}
         self.start_round()
 
     def start_round(self):
@@ -155,7 +134,7 @@ class Server:
         self.models = {}
         for client in self.clients:
             self.models[client] = copy.deepcopy(self.avg_model)
-            self.losses[self.current_cycle][client][self.current_round] = []
+            self.losses[client][self.current_round] = []
             self.round_completion[client] = False
 
         for client in self.clients:
@@ -165,5 +144,7 @@ class Server:
                          })
 
     def save_losses(self):
-        file = open(f"./losses/node_{self.port-8000}.json", "w")
+        file = open(f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/losses/node_{self.port-8000}.json", "w")
         file.write(json.dumps(self.losses))
+        file = open(f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/losses/scores.json", "w")
+        file.write(json.dumps(self.scores))

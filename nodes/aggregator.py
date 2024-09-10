@@ -5,11 +5,6 @@ executer = concurrent.futures.ThreadPoolExecutor(3)
 losses = []
 app = Flask(__name__)
 
-# def get_data(num_nodes):
-#     test_file = open(f"./data/femnist/test/node{num_nodes}.json", "r")
-#     test_data = json.loads(test_file.read())
-#     test_dataset = CustomImageDataset(test_data)
-#     return DataLoader(test_dataset, batch_size=len(test_dataset))
 
 def get_data(num_nodes):
     test_dataset = datasets.FashionMNIST(

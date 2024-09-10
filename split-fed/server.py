@@ -14,7 +14,6 @@ class Server:
         self.port = port
         self.rounds = 3
         self.current_round = 0
-        self.current_cycle = 0
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.lr = 3e-4
         self.ServerNN = ServerNN
@@ -30,10 +29,6 @@ class Server:
     def get_model(self, client_port):
         with self.semaphore:
             return self.models[client_port]
-
-    def get_submitted_models(self):
-        res = requests.get(f"http://localhost:3000/api/models/")
-        return json.loads(res.content)
 
     def set_model(self, model, client_port):
         with self.semaphore:
@@ -68,30 +63,6 @@ class Server:
             clientOutput = clientOutputCPU.to("cpu")
             return model(clientOutput)
 
-    def evaluate(self, client):
-        models_path = self.get_submitted_models()
-        loss_fn = nn.CrossEntropyLoss()
-        pattern = r'node_\d+'
-        scores = {}
-        for models in models_path:
-            server_name = re.findall(pattern, models["serverPath"])[0]
-            if server_name != f"node_{self.port-8000}":
-                client_scores = []
-                for path in models["clientsPath"]:
-                    outputs, targets = client.predict(path)
-                    pred = self.predict(outputs, models["serverPath"])
-                    targets = targets.to("cpu")
-                    loss = loss_fn(pred, targets)
-                    name = re.findall(pattern, path)[0]
-                    scores[name] = loss.item()
-                    client_scores.append(loss.item())
-                scores[server_name] = np.median(client_scores)
-        print(scores)
-        requests.post("http://localhost:3000/api/eval/", json={
-            "id": f"eval_{self.port-8000}",
-            "scores": scores
-        })
-
     def aggregate(self):
         clients = list(self.models.keys())
         weights_avg = copy.deepcopy(self.models[clients[0]].state_dict())
@@ -102,7 +73,7 @@ class Server:
         self.avg_model.load_state_dict(weights_avg)
 
     def finish_round(self, client, losses):
-        self.losses[self.current_cycle][client][self.current_round] = losses
+        self.losses[client][self.current_round] = losses
         self.round_completion[client] = True
         for client, completed in self.round_completion.items():
             if not completed:
@@ -140,11 +111,9 @@ class Server:
         print("Training Completed.")
 
     def start(self, clients, current_cycle):
-        self.current_cycle = current_cycle
-        self.losses[self.current_cycle] = {}
         self.clients = clients
         for client in self.clients:
-            self.losses[self.current_cycle][client] = {}
+            self.losses[client] = {}
             requests.get(f"http://localhost:{client}/client/load/")
         self.load_model()
         self.current_round = 0
@@ -155,7 +124,7 @@ class Server:
         self.models = {}
         for client in self.clients:
             self.models[client] = copy.deepcopy(self.avg_model)
-            self.losses[self.current_cycle][client][self.current_round] = []
+            self.losses[client][self.current_round] = []
             self.round_completion[client] = False
 
         for client in self.clients:

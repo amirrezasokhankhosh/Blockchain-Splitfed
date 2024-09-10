@@ -69,15 +69,6 @@ class Client:
     def load_model(self): 
         self.model.load_state_dict(torch.load("./models/global_client.pth"))
 
-    def are_models_equal(self, model1, model2):
-        model1_state_dict = model1.state_dict()
-        model2_state_dict = model2.state_dict()
-        
-        for key in model1_state_dict:
-            if not torch.equal(model1_state_dict[key], model2_state_dict[key]):
-                return False
-        return True
-
     def train(self, server_port):
         if self.malicious:
             self.attack(server_port)

@@ -2,16 +2,19 @@ from global_var import *
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from blockchain_split_fed.client import Client
-from blockchain_split_fed.server import Server
+# from blockchain_split_fed.client import Client
+# from blockchain_split_fed.server import Server
+from split_learning.client import Client
+from split_learning.server import Server
 
 
 port = 8000
-num_clients = 3
+num_clients = 8
 futures = {}
 executer = concurrent.futures.ThreadPoolExecutor(num_clients+1)
 client = Client(port, ClientNN)
-server = Server(port, ServerNN)
+# server = Server(port, ServerNN)
+server = Server(port, ServerNN, client)
 app = Flask(__name__)
 
 
@@ -85,7 +88,9 @@ def start_server():
     temp = request.get_json()["clients"]
     clients = [c["port"] for c in temp]
     cycle = request.get_json()["cycle"]
-    executer.submit(server.start, clients, cycle)
+    print(clients, cycle)
+    server.start(clients, cycle)
+    # executer.submit(server.start, clients, cycle)
     return "Started."
 
 @app.route("/save/")
