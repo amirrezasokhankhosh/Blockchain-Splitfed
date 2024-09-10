@@ -13,7 +13,7 @@ class Client:
     def __init__(self, port, ClientNN, malicious=False):
         self.port = port
         self.batch_size = 128
-        self.epochs = 3
+        self.epochs = 5
         self.num_nodes = 9
         # self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.device = "cpu"
@@ -25,13 +25,13 @@ class Client:
 
     #CIFAR10
     def get_data(self):
-        training_dataset = datasets.CIFAR10(
+        training_dataset = datasets.FashionMNIST(
             root="data",
             train=False,
             download=False,
             transform=ToTensor()
         )
-        test_dataset = datasets.CIFAR10(
+        test_dataset = datasets.FashionMNIST(
             root="data",
             train=False,
             download=False,
@@ -64,10 +64,6 @@ class Client:
     #     self.training_dataset, self.test_dataset = CustomImageDataset(train_data), CustomImageDataset(test_data)
     #     self.training_dataloader = DataLoader(self.training_dataset, batch_size=self.batch_size)
     #     self.test_dataloader = DataLoader(self.test_dataset, batch_size=len(self.test_dataset))
-
-
-    def load_model(self): 
-        self.model.load_state_dict(torch.load("./models/global_client.pth"))
 
     def train(self, server_port):
         if self.malicious:
@@ -103,7 +99,7 @@ class Client:
                     self.optimizer.step()
                     self.optimizer.zero_grad()
                 losses.append(epoch_loss/len(self.training_dataloader))
-            torch.save(self.model.state_dict(), f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/models/node_{self.port-8000}_client.pth")
+            torch.save(self.model.state_dict(), f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_fed/models/node_{self.port-8000}_client.pth")
             requests.post(f"http://localhost:{server_port}/server/round/",
                                             json={
                                                 "client_port" : self.port,
@@ -136,7 +132,7 @@ class Client:
                     status = json.loads(res.content.decode())["status"]
                 epoch_loss += json.loads(res.content.decode())["loss"]
             losses.append(epoch_loss/len(self.training_dataloader))
-        torch.save(self.model.state_dict(), f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/models/node_{self.port-8000}_client.pth")
+        torch.save(self.model.state_dict(), f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_fed/models/node_{self.port-8000}_client.pth")
         requests.post(f"http://localhost:{server_port}/server/round/",
                                         json={
                                             "client_port" : self.port,
