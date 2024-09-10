@@ -19,7 +19,7 @@ class Server:
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.lr = 3e-4
         self.ServerNN = ServerNN
-        self.avg_model = self.ServerNN().to(self.device)
+        self.avg_model = self.ServerNN().to("cpu")
         self.models = {}
         self.losses = {}
         self.scores = []
@@ -65,7 +65,7 @@ class Server:
             return self.avg_model(clientOutput)
 
     def evaluate(self):
-        models_path = [f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/models/node_{client_port-8000}_client.pth"
+        models_path = [f"/home/cs/grad/sokhanka/Documents/splitfed/split_learning/models/node_{client_port-8000}_client.pth"
                for client_port in self.clients]
         loss_fn = nn.CrossEntropyLoss()
         pattern = r'node_\d+'
@@ -106,12 +106,12 @@ class Server:
         cwd = os.path.dirname(__file__)
         model_name = f"node_{self.port-8000}_server"
         server_model_path = os.path.abspath(
-            os.path.join(cwd, f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/models/{model_name}.pth"))
+            os.path.join(cwd, f"/home/cs/grad/sokhanka/Documents/splitfed/split_learning/models/{model_name}.pth"))
         client_models_path = []
         for client in self.clients:
             model_name = f"node_{client-8000}_client"
             client_models_path.append(os.path.abspath(
-                os.path.join(cwd, f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/models/{model_name}.pth")))
+                os.path.join(cwd, f"/home/cs/grad/sokhanka/Documents/splitfed/split_learning/models/{model_name}.pth")))
         return server_model_path, client_models_path
 
     def finish_training(self):
@@ -144,7 +144,7 @@ class Server:
                          })
 
     def save_losses(self):
-        file = open(f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/losses/node_{self.port-8000}.json", "w")
+        file = open(f"/home/cs/grad/sokhanka/Documents/splitfed/split_learning/losses/node_{self.port-8000}.json", "w")
         file.write(json.dumps(self.losses))
-        file = open(f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_learning/losses/scores.json", "w")
+        file = open(f"/home/cs/grad/sokhanka/Documents/splitfed/split_learning/losses/scores.json", "w")
         file.write(json.dumps(self.scores))
