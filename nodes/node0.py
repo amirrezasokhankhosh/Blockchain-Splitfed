@@ -10,7 +10,7 @@ port = 8000
 num_clients = 3
 futures = {}
 executer = concurrent.futures.ThreadPoolExecutor(num_clients+1)
-client = Client(port, ClientNN)
+client = Client(port, ClientNN, malicious=True)
 server = Server(port, ServerNN)
 app = Flask(__name__)
 
@@ -18,8 +18,8 @@ app = Flask(__name__)
 @app.route("/client/train/")
 def train_client():
     server_port = request.get_json()["server_port"]
-    client.train(server_port)
-    # executer.submit(client.train, server_port)
+    # client.train(server_port)
+    executer.submit(client.train, server_port)
     return "The client started training!"
 
 
