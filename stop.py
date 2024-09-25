@@ -18,6 +18,3 @@ try:
     requests.get("http://localhost:5050/exit/")
 except:
     print("Aggregator is stopped.")
-
-except:
-    print("Submitter is stopped.")
