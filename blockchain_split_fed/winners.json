@@ -1,105 +1,82 @@
 {
-    "cycles": [
-      {
-        "cycle": 1,
-        "servers": ["node_8", "node_7"],
-        "clients": ["node_5", "node_4", "node_3", "node_2"]
-      },
-      {
-        "cycle": 2,
-        "servers": ["node_5", "node_4"],
-        "clients": ["node_8", "node_7", "node_2", "node_1"]
-      },
-      {
-        "cycle": 3,
-        "servers": ["node_7", "node_8"],
-        "clients": ["node_5", "node_4", "node_1", "node_6"]
-      },
-      {
-        "cycle": 4,
-        "servers": ["node_4", "node_5"],
-        "clients": ["node_7", "node_8", "node_6", "node_3"]
-      },
-      {
-        "cycle": 5,
-        "servers": ["node_7", "node_8"],
-        "clients": ["node_6", "node_2", "node_4", "node_5"]
-      },
-      {
-        "cycle": 6,
-        "servers": ["node_2", "node_6"],
-        "clients": ["node_5", "node_1", "node_7", "node_8"]
-      },
-      {
-        "cycle": 7,
-        "servers": ["node_1", "node_8"],
-        "clients": ["node_2", "node_6", "node_5", "node_3"]
-      },
-      {
-        "cycle": 8,
-        "servers": ["node_2", "node_6"],
-        "clients": ["node_5", "node_4", "node_1", "node_8"]
-      },
-      {
-        "cycle": 9,
-        "servers": ["node_4", "node_5"],
-        "clients": ["node_2", "node_6", "node_1", "node_7"]
-      },
-      {
-        "cycle": 10,
-        "servers": ["node_2", "node_6"],
-        "clients": ["node_4", "node_5", "node_7", "node_3"]
-      },
-      {
-        "cycle": 11,
-        "servers": ["node_4", "node_3"],
-        "clients": ["node_2", "node_6", "node_1", "node_8"]
-      },
-      {
-        "cycle": 12,
-        "servers": ["node_2", "node_1"],
-        "clients": ["node_4", "node_3", "node_5", "node_7"]
-      },
-      {
-        "cycle": 13,
-        "servers": ["node_5", "node_3"],
-        "clients": ["node_6", "node_8", "node_2", "node_1"]
-      },
-      {
-        "cycle": 14,
-        "servers": ["node_1", "node_6"],
-        "clients": ["node_4", "node_7", "node_5", "node_3"]
-      },
-      {
-        "cycle": 15,
-        "servers": ["node_7", "node_3"],
-        "clients": ["node_2", "node_8", "node_0", "node_5"]
-      },
-      {
-        "cycle": 16,
-        "servers": ["node_1", "node_2"],
-        "clients": ["node_4", "node_6", "node_7", "node_0"]
-      },
-      {
-        "cycle": 17,
-        "servers": ["node_3", "node_6"],
-        "clients": ["node_2", "node_7", "node_8", "node_5"]
-      },
-      {
-        "cycle": 18,
-        "servers": ["node_7", "node_2"],
-        "clients": ["node_1", "node_5", "node_3", "node_6"]
-      },
-      {
-        "cycle": 19,
-        "servers": ["node_1", "node_3"],
-        "clients": ["node_7", "node_2", "node_8", "node_5"]
-      },
-      {
-        "cycle": 20,
-        "servers": ["node_2", "node_8"],
-        "clients": ["node_1", "node_3", "node_4", "node_6"]
-      }
-    ]
+  "Cycle_1": {
+    "servers": ["node_5", "node_8"],
+    "clients": ["node_4", "node_3", "node_7", "node_6"]
+  },
+  "Cycle_2": {
+    "servers": ["node_4", "node_3"],
+    "clients": ["node_8", "node_7", "node_5", "node_6"]
+  },
+  "Cycle_3": {
+    "servers": ["node_5", "node_8"],
+    "clients": ["node_3", "node_6", "node_4", "node_7"]
+  },
+  "Cycle_4": {
+    "servers": ["node_3", "node_7"],
+    "clients": ["node_5", "node_6", "node_8", "node_4"]
+  },
+  "Cycle_5": {
+    "servers": ["node_4", "node_5"],
+    "clients": ["node_6", "node_3", "node_7", "node_8"]
+  },
+  "Cycle_6": {
+    "servers": ["node_3", "node_6"],
+    "clients": ["node_4", "node_8", "node_5", "node_7"]
+  },
+  "Cycle_7": {
+    "servers": ["node_4", "node_5"],
+    "clients": ["node_3", "node_8", "node_6", "node_7"]
+  },
+  "Cycle_8": {
+    "servers": ["node_3", "node_7"],
+    "clients": ["node_4", "node_8", "node_5", "node_6"]
+  },
+  "Cycle_9": {
+    "servers": ["node_6", "node_8"],
+    "clients": ["node_7", "node_5", "node_3", "node_4"]
+  },
+  "Cycle_10": {
+    "servers": ["node_7", "node_5"],
+    "clients": ["node_8", "node_4", "node_3", "node_6"]
+  },
+  "Cycle_11": {
+    "servers": ["node_3", "node_4"],
+    "clients": ["node_5", "node_6", "node_7", "node_8"]
+  },
+  "Cycle_12": {
+    "servers": ["node_5", "node_7"],
+    "clients": ["node_8", "node_3", "node_4", "node_6"]
+  },
+  "Cycle_13": {
+    "servers": ["node_3", "node_6"],
+    "clients": ["node_5", "node_8", "node_7", "node_4"]
+  },
+  "Cycle_14": {
+    "servers": ["node_5", "node_4"],
+    "clients": ["node_3", "node_7", "node_6", "node_8"]
+  },
+  "Cycle_15": {
+    "servers": ["node_7", "node_3"],
+    "clients": ["node_4", "node_8", "node_6", "node_5"]
+  },
+  "Cycle_16": {
+    "servers": ["node_5", "node_4"],
+    "clients": ["node_8", "node_7", "node_3", "node_6"]
+  },
+  "Cycle_17": {
+    "servers": ["node_3", "node_7"],
+    "clients": ["node_4", "node_6", "node_5", "node_8"]
+  },
+  "Cycle_18": {
+    "servers": ["node_4", "node_5"],
+    "clients": ["node_7", "node_8", "node_6", "node_3"]
+  },
+  "Cycle_19": {
+    "servers": ["node_8", "node_7"],
+    "clients": ["node_5", "node_6", "node_3", "node_4"]
+  },
+  "Cycle_20": {
+    "servers": ["node_5", "node_3"],
+    "clients": ["node_8", "node_6", "node_7", "node_4"]
   }
-  
+}
