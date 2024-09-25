@@ -4,8 +4,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # from split_learning.client import Client
 # from split_learning.server import Server
-from split_fed.client import Client
-from split_fed.server import Server
+# from split_fed.client import Client
+# from split_fed.server import Server
+from multi_split_fed.client import Client
+from multi_split_fed.server import Server
 # from blockchain_split_fed.client import Client
 # from blockchain_split_fed.server import Server
 
@@ -14,8 +16,8 @@ num_clients = 3
 futures = {}
 executer = concurrent.futures.ThreadPoolExecutor(num_clients+1)
 client = Client(port, ClientNN)
-# server = Server(port, ServerNN)
-server = Server(port, ServerNN, client)
+server = Server(port, ServerNN)
+# server = Server(port, ServerNN, client)
 app = Flask(__name__)
 
 
