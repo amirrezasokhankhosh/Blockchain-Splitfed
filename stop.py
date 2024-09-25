@@ -19,8 +19,5 @@ try:
 except:
     print("Aggregator is stopped.")
 
-# Submitter
-try:
-    requests.get("http://localhost:6060/exit/")
 except:
     print("Submitter is stopped.")

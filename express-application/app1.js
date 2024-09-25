@@ -17,6 +17,7 @@ const fileService = require('node:fs');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const { exec } = require('child_process');
 const app = express();
 const jsonParser = bodyParser.json();
 const port = 3000;
@@ -168,6 +169,17 @@ async function startCycle() {
         saveCycleTimes()
         await axios.get(`http://localhost:${aggregatorPort}/losses/`);
         console.log("All cycles completed.");
+        exec('python3 ../stop.py', (error, stdout, stderr) => {
+            if (error) {
+              console.error(`Error: ${error.message}`);
+              return;
+            }
+            if (stderr) {
+              console.error(`stderr: ${stderr}`);
+              return;
+            }
+            console.log(`stdout: ${stdout}`);
+          });
         currentCycle = 0;
     }
 }

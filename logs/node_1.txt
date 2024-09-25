@@ -1,0 +1,2 @@
+ * Serving Flask app 'node1'
+ * Debug mode: on
