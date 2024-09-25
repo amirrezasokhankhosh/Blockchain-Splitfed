@@ -58,21 +58,33 @@ class ManageScores extends Contract {
             }
         }
 
-        let j = 0;
         let pointer1 = 0;
         let pointer2 = 0;
-        for (let i = 0 ; i < numNodes ; i++) {
-            if (i < roundInfo.numServers) {
-                roundInfo.clients[scores[i].id] = [];
-                roundInfo.servers.push(scores[i]);
-                pointer1 = i + 1
+        for (let i = 0; i < roundInfo.numServers; i++) {
+            let currentServer;
+            if (pointer2 === prevServers.length) {
+                currentServer = scores[pointer1].id;
+                roundInfo.clients[currentServer] = [];
+                roundInfo.servers.push(scores[pointer1]);
+                pointer1++;
+            } else if (pointer1 === scores.length) {
+                currentServer = prevScores[pointer2].id;
+                roundInfo.clients[currentServer] = [];
+                roundInfo.servers.push(prevScores[pointer2]);
+                pointer2++;
             } else {
-                let currentServer = roundInfo.servers[j].id;
+                currentServer = scores[pointer1].id;
+                roundInfo.clients[currentServer] = [];
+                roundInfo.servers.push(scores[pointer1]);
+                pointer1++;
+            }
+
+            for (let j = 0; j < roundInfo.numClients; j++) {
                 if (pointer2 === prevServers.length) {
                     roundInfo.clients[currentServer].push(scores[pointer1]);
                     pointer1++;
-                } else if (pointer1 === numNodes) {
-                    roundInfo.clients[currentServer].push(scores[pointer2]);
+                } else if (pointer1 === scores.length) {
+                    roundInfo.clients[currentServer].push(prevScores[pointer2]);
                     pointer2++;
                 } else if (scores[pointer1].score <= prevScores[pointer2].score) {
                     roundInfo.clients[currentServer].push(scores[pointer1]);
@@ -81,11 +93,39 @@ class ManageScores extends Contract {
                     roundInfo.clients[currentServer].push(prevScores[pointer2]);
                     pointer2++;
                 }
-                if (roundInfo.clients[currentServer].length === roundInfo.numClients) {
-                    j = j + 1;
-                }
             }
         }
+
+
+        // let j = 0;
+        // let pointer1 = 0;
+        // let pointer2 = 0;
+        // for (let i = 0 ; i < numNodes ; i++) {
+        //     if (i < roundInfo.numServers) {
+        //         roundInfo.clients[scores[i].id] = [];
+        //         roundInfo.servers.push(scores[i]);
+        //         pointer1 = i + 1
+        //     } else {
+        //         let currentServer = roundInfo.servers[j].id;
+        //         if (pointer2 === prevServers.length) {
+        //             roundInfo.clients[currentServer].push(scores[pointer1]);
+        //             pointer1++;
+        //         } else if (pointer1 === scores.length) {
+        //             roundInfo.clients[currentServer].push(scores[pointer2]);
+        //             pointer2++;
+        //         } else if (scores[pointer1].score <= prevScores[pointer2].score) {
+        //             roundInfo.clients[currentServer].push(scores[pointer1]);
+        //             pointer1++;
+        //         } else {
+        //             roundInfo.clients[currentServer].push(prevScores[pointer2]);
+        //             pointer2++;
+        //         }
+        //         if (roundInfo.clients[currentServer].length === roundInfo.numClients) {
+        //             j = j + 1;
+        //         }
+        //     }
+        // }
+
         await ctx.stub.putState(roundInfo.id, Buffer.from(stringify(sortKeysRecursive(roundInfo))));
         return JSON.stringify(roundInfo);
     }
