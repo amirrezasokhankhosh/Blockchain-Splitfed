@@ -22,6 +22,7 @@ class Client:
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=3e-4)
         self.get_data()
         self.malicious = malicious
+        self.root_path = "/home/cs/grad/sokhanka/Documents/splitfed"
 
     #CIFAR10
     def get_data(self):
@@ -99,7 +100,7 @@ class Client:
                     self.optimizer.step()
                     self.optimizer.zero_grad()
                 losses.append(epoch_loss/len(self.training_dataloader))
-            torch.save(self.model.state_dict(), f"/home/cs/grad/sokhanka/Documents/splitfed/split_learning/models/node_{self.port-8000}_client.pth")
+            torch.save(self.model.state_dict(), f"{self.root_path}/split_learning/models/node_{self.port-8000}_client.pth")
             requests.post(f"http://localhost:{server_port}/server/round/",
                                             json={
                                                 "client_port" : self.port,
@@ -132,7 +133,7 @@ class Client:
                     status = json.loads(res.content.decode())["status"]
                 epoch_loss += json.loads(res.content.decode())["loss"]
             losses.append(epoch_loss/len(self.training_dataloader))
-        torch.save(self.model.state_dict(), f"/home/cs/grad/sokhanka/Documents/splitfed/split_learning/models/node_{self.port-8000}_client.pth")
+        torch.save(self.model.state_dict(), f"{self.root_path}/split_learning/models/node_{self.port-8000}_client.pth")
         requests.post(f"http://localhost:{server_port}/server/round/",
                                         json={
                                             "client_port" : self.port,

@@ -25,6 +25,7 @@ class Server:
         self.scores = []
         self.round_completion = {}
         self.semaphore = threading.Semaphore(1)
+        self.root_path = "/home/cs/grad/sokhanka/Documents/splitfed"
 
     def load_model(self):
         self.avg_model.load_state_dict(torch.load("./models/global_server.pth"))
@@ -106,12 +107,12 @@ class Server:
         cwd = os.path.dirname(__file__)
         model_name = f"node_{self.port-8000}_server"
         server_model_path = os.path.abspath(
-            os.path.join(cwd, f"/home/cs/grad/sokhanka/Documents/splitfed/split_learning/models/{model_name}.pth"))
+            os.path.join(cwd, f"{self.root_path}/split_learning/models/{model_name}.pth"))
         client_models_path = []
         for client in self.clients:
             model_name = f"node_{client-8000}_client"
             client_models_path.append(os.path.abspath(
-                os.path.join(cwd, f"/home/cs/grad/sokhanka/Documents/splitfed/split_learning/models/{model_name}.pth")))
+                os.path.join(cwd, f"{self.root_path}/split_learning/models/{model_name}.pth")))
         return server_model_path, client_models_path
 
     def finish_training(self):
@@ -144,7 +145,7 @@ class Server:
                          })
 
     def save_losses(self):
-        file = open(f"/home/cs/grad/sokhanka/Documents/splitfed/split_learning/losses/node_{self.port-8000}.json", "w")
+        file = open(f"{self.root_path}/split_learning/losses/node_{self.port-8000}.json", "w")
         file.write(json.dumps(self.losses))
-        file = open(f"/home/cs/grad/sokhanka/Documents/splitfed/split_learning/losses/scores.json", "w")
+        file = open(f"{self.root_path}/split_learning/losses/scores.json", "w")
         file.write(json.dumps(self.scores))
