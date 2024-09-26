@@ -24,10 +24,12 @@ attack_bl_split_fed_cycles = [0.4464004635810852, 0.3579782247543335, 0.31853929
 
 attack_bl_split_fed = []
 
-sharding_split_fed_cycles = [0.7073781490325928, 0.5726374387741089, 0.5029293298721313, 0.4589667320251465, 0.4322936236858368, 0.4217144548892975, 0.3997231423854828, 0.39153581857681274, 0.38651975989341736, 0.37848567962646484, 0.3755820691585541, 0.3746035397052765, 0.3848946690559387, 0.3873468339443207, 0.3744698762893677, 0.3804120719432831, 0.37368544936180115, 0.3756796717643738, 0.38235795497894287, 0.3849562704563141]
+sharding_split_fed_cycles = [0.7073781490325928, 0.5726374387741089, 0.5029293298721313, 0.4589667320251465, 0.4322936236858368, 0.4217144548892975, 0.3997231423854828, 0.39153581857681274, 0.38651975989341736,
+                             0.37848567962646484, 0.3755820691585541, 0.3746035397052765, 0.3848946690559387, 0.3873468339443207, 0.3744698762893677, 0.3804120719432831, 0.37368544936180115, 0.3756796717643738, 0.38235795497894287, 0.3849562704563141]
 sharding_split_fed = []
 
-attack_sharding_split_fed_cycles = [1.4125947952270508, 1.1124248504638672, 1.0526466369628906, 1.0061447620391846, 0.9627693295478821, 0.8877659440040588, 0.8160695433616638, 0.7672073841094971, 0.7284406423568726, 0.6842613220214844, 0.6642649173736572, 0.6419612765312195, 0.6150196194648743, 0.5914596319198608, 0.5745565891265869, 0.5551872253417969, 0.5418250560760498, 0.5207222104072571, 0.5110795497894287, 0.4997393786907196]
+attack_sharding_split_fed_cycles = [1.4125947952270508, 1.1124248504638672, 1.0526466369628906, 1.0061447620391846, 0.9627693295478821, 0.8877659440040588, 0.8160695433616638, 0.7672073841094971, 0.7284406423568726,
+                                    0.6842613220214844, 0.6642649173736572, 0.6419612765312195, 0.6150196194648743, 0.5914596319198608, 0.5745565891265869, 0.5551872253417969, 0.5418250560760498, 0.5207222104072571, 0.5110795497894287, 0.4997393786907196]
 attack_sharding_split_fed = []
 
 
@@ -54,21 +56,29 @@ plt.plot(bl_split_fed, label="Blockchain Sharding SplitFed", color="C3")
 plt.legend()
 plt.show()
 
-plt.plot(attack_split_learning, label="Attacked Split Learning", color="C0", linestyle="dashed")
-plt.plot(attack_split_fed, label="Attacked SplitFed Learning", color="C1", linestyle="dashed")
-plt.plot(attack_sharding_split_fed, label="Attacked Sharding SplitFed", color="C2", linestyle="dashed")
-plt.plot(attack_bl_split_fed, label="Attacked Blockchain Sharding SplitFed", color="C3", linestyle="dashed")
+plt.plot(attack_split_learning, label="Attacked Split Learning",
+         color="C0", linestyle="dashed")
+plt.plot(attack_split_fed, label="Attacked SplitFed Learning",
+         color="C1", linestyle="dashed")
+plt.plot(attack_sharding_split_fed, label="Attacked Sharding SplitFed",
+         color="C2", linestyle="dashed")
+plt.plot(attack_bl_split_fed, label="Attacked Blockchain Sharding SplitFed",
+         color="C3", linestyle="dashed")
 plt.legend()
 plt.show()
 
 
 plt.plot(split_learning, label="Split Learning", color="C0")
-plt.plot(attack_split_learning, label="Attacked Split Learning", color="C0", linestyle="dashed")
+plt.plot(attack_split_learning, label="Attacked Split Learning",
+         color="C0", linestyle="dashed")
 plt.plot(split_fed, label="SplitFed Learning", color="C1")
-plt.plot(attack_split_fed, label="Attacked SplitFed Learning", color="C1", linestyle="dashed")
+plt.plot(attack_split_fed, label="Attacked SplitFed Learning",
+         color="C1", linestyle="dashed")
 plt.plot(sharding_split_fed, label="Sharding SplitFed", color="C2")
-plt.plot(attack_sharding_split_fed, label="Attacked Sharding SplitFed", color="C2", linestyle="dashed")
+plt.plot(attack_sharding_split_fed, label="Attacked Sharding SplitFed",
+         color="C2", linestyle="dashed")
 plt.plot(bl_split_fed, label="Blockchain Sharding SplitFed", color="C3")
-plt.plot(attack_bl_split_fed, label="Attacked Blockchain Sharding SplitFed", color="C3", linestyle="dashed")
+plt.plot(attack_bl_split_fed, label="Attacked Blockchain Sharding SplitFed",
+         color="C3", linestyle="dashed")
 plt.legend()
 plt.show()
