@@ -14,7 +14,7 @@ class Server:
     def __init__(self, port, ServerNN, client):
         self.port = port
         self.client = client
-        self.rounds = 60
+        self.rounds = 1
         self.current_round = 0
         self.current_cycle = 0
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -117,13 +117,13 @@ class Server:
         return server_model_path, client_models_path
 
     def finish_training(self):
-        print("Here!")
         server_model_path, client_models_path = self.get_model_paths()
 
         torch.save(self.avg_model.state_dict(), server_model_path)
 
         self.save_losses()
         print("Training Completed.")
+        os.system("python3 ../stop.py")
 
     def start(self, clients, cycle):
         self.clients = clients

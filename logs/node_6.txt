@@ -1,0 +1,9 @@
+ * Serving Flask app 'node6'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8006
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 256-579-823
+127.0.0.1 - - [26/Sep/2024 17:08:50] "GET /client/train/ HTTP/1.1" 200 -
