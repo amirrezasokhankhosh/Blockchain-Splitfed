@@ -3,6 +3,7 @@ import json
 import torch
 import requests
 from torch import nn
+from pathlib import Path
 from torchvision import datasets
 from torch.utils.data import DataLoader
 from torchvision.transforms import ToTensor
@@ -22,7 +23,7 @@ class Client:
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=3e-4)
         self.get_data()
         self.malicious = malicious
-        self.root_path = "/home/cs/grad/sokhanka/Documents/splitfed"
+        self.root_path = Path(__file__).resolve().parents[1]
 
     #CIFAR10
     def get_data(self):

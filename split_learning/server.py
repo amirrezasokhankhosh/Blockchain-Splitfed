@@ -7,6 +7,7 @@ import requests
 import threading
 import numpy as np
 from torch import nn
+from pathlib import Path
 
 
 class Server:
@@ -25,7 +26,7 @@ class Server:
         self.scores = []
         self.round_completion = {}
         self.semaphore = threading.Semaphore(1)
-        self.root_path = "/home/cs/grad/sokhanka/Documents/splitfed"
+        self.root_path = Path(__file__).resolve().parents[1]
 
     def load_model(self):
         self.avg_model.load_state_dict(torch.load("./models/global_server.pth"))
@@ -66,7 +67,7 @@ class Server:
             return self.avg_model(clientOutput)
 
     def evaluate(self):
-        models_path = [f"/home/cs/grad/sokhanka/Documents/splitfed/split_learning/models/node_{client_port-8000}_client.pth"
+        models_path = [f"{self.root_path}/split_learning/models/node_{client_port-8000}_client.pth"
                for client_port in self.clients]
         loss_fn = nn.CrossEntropyLoss()
         pattern = r'node_\d+'
