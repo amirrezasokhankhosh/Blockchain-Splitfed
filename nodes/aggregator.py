@@ -2,6 +2,7 @@ from global_var import *
 
 
 executer = concurrent.futures.ThreadPoolExecutor(3)
+root_path = Path(__file__).resolve().parents[1]
 losses = []
 app = Flask(__name__)
 
@@ -53,9 +54,9 @@ def aggregate_models(models):
 
 
 def aggregate_splitfed(server_names, client_names):
-    servers = [torch.load(f"/home/cs/grad/sokhanka/Documents/splitfed/blockchain_split_fed/models/{server_name}_server.pth")
+    servers = [torch.load(f"{root_path}/blockchain_split_fed/models/{server_name}_server.pth")
                for server_name in server_names]
-    clients = [torch.load(f"/home/cs/grad/sokhanka/Documents/splitfed/blockchain_split_fed/models/{client_name}_client.pth")
+    clients = [torch.load(f"{root_path}/blockchain_split_fed/models/{client_name}_client.pth")
                for client_name in client_names]
     global_server = aggregate_models(servers)
     global_client = aggregate_models(clients)
@@ -65,7 +66,7 @@ def aggregate_splitfed(server_names, client_names):
 
 @app.route("/losses/")
 def save_losses():
-    file = open(f"/home/cs/grad/sokhanka/Documents/splitfed/blockchain_split_fed/losses/aggregator.json", "w")
+    file = open(f"{root_path}/blockchain_split_fed/losses/aggregator.json", "w")
     file.write(json.dumps(losses))
     return "done"
 
