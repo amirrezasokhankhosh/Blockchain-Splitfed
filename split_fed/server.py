@@ -7,6 +7,7 @@ import requests
 import threading
 import numpy as np
 from torch import nn
+from pathlib import Path
 
 
 class Server:
@@ -25,6 +26,7 @@ class Server:
         self.scores = []
         self.round_completion = {}
         self.semaphore = threading.Semaphore(1)
+        self.root_path = Path(__file__).resolve().parents[1]
 
     def load_model(self):
         self.avg_model.load_state_dict(torch.load("./models/global_server.pth"))
@@ -65,7 +67,7 @@ class Server:
             return self.avg_model(clientOutput)
 
     def evaluate(self):
-        models_path = [f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_fed/models/node_{client_port-8000}_client.pth"
+        models_path = [f"{self.root_path}/split_fed/models/node_{client_port-8000}_client.pth"
                for client_port in self.clients]
         loss_fn = nn.CrossEntropyLoss()
         pattern = r'node_\d+'
@@ -90,7 +92,7 @@ class Server:
         self.avg_model.load_state_dict(weights_avg)
 
     def aggregate_clients(self):
-        models = [torch.load(f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_fed/models/node_{client_port-8000}_client.pth")
+        models = [torch.load(f"{self.root_path}/split_fed/models/node_{client_port-8000}_client.pth")
                for client_port in self.clients]
         global_client = {}
         for key in models[0].keys():
@@ -115,12 +117,12 @@ class Server:
         cwd = os.path.dirname(__file__)
         model_name = f"node_{self.port-8000}_server"
         server_model_path = os.path.abspath(
-            os.path.join(cwd, f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_fed/models/{model_name}.pth"))
+            os.path.join(cwd, f"{self.root_path}/split_fed/models/{model_name}.pth"))
         client_models_path = []
         for client in self.clients:
             model_name = f"node_{client-8000}_client"
             client_models_path.append(os.path.abspath(
-                os.path.join(cwd, f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_fed/models/{model_name}.pth")))
+                os.path.join(cwd, f"{self.root_path}/split_fed/models/{model_name}.pth")))
         return server_model_path, client_models_path
 
     def finish_training(self):
@@ -152,7 +154,7 @@ class Server:
                          })
 
     def save_losses(self):
-        file = open(f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_fed/losses/node_{self.port-8000}.json", "w")
+        file = open(f"{self.root_path}/split_fed/losses/node_{self.port-8000}.json", "w")
         file.write(json.dumps(self.losses))
-        file = open(f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/split_fed/losses/scores.json", "w")
+        file = open(f"{self.root_path}/split_fed/losses/scores.json", "w")
         file.write(json.dumps(self.scores))
