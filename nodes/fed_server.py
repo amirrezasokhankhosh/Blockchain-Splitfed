@@ -51,6 +51,7 @@ class FedServer:
         else:
             self.save_losses()
             print("All cycles completed.")
+            os.system("python3 ../stop.py")
 
     def aggregate_models(self, models):
         global_model = {}
