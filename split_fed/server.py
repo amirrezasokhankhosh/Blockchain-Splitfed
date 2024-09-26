@@ -132,6 +132,7 @@ class Server:
 
         self.save_losses()
         print("Training Completed.")
+        os.system("python3 ../stop.py")
 
     def start(self, clients, cycle):
         self.clients = clients
