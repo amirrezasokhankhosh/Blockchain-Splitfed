@@ -12,8 +12,9 @@ const {
     EvalApp
 } = require("../eval-propose/eval-propose-application");
 const evalApp = new EvalApp();
-const fileService = require('node:fs');
 
+const fileService = require('node:fs');
+const { exec } = require('child_process');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -168,6 +169,17 @@ async function startCycle() {
         saveCycleTimes()
         await axios.get(`http://localhost:${aggregatorPort}/losses/`);
         console.log("All cycles completed.");
+        exec('python3 ../stop.py', (error, stdout, stderr) => {
+            if (error) {
+              console.error(`Error: ${error.message}`);
+              return;
+            }
+            if (stderr) {
+              console.error(`stderr: ${stderr}`);
+              return;
+            }
+            console.log(`stdout: ${stdout}`);
+          });
         currentCycle = 0;
     }
 }

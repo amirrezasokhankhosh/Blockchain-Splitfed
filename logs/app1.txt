@@ -1,0 +1,15 @@
+Server is listening on localhost:3000.
+
+*** CYCLE 1 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_6', 'node_8' ],
+  clients: [ 'node_1', 'node_0', 'node_5', 'node_4' ]
+}
+Aggregation completed.
+*** CYCLE 1 COMPLETED *** 
+
+Cycle trip times is saved.
+All cycles completed.

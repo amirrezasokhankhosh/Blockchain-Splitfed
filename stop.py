@@ -6,7 +6,7 @@ try:
 except:
     print("App1 is stopped.")
 
-# Miners
+# Nodes
 for i in range(9):
     try:
         requests.get(f"http://localhost:{8000 + i}/exit/")
@@ -18,9 +18,3 @@ try:
     requests.get("http://localhost:5050/exit/")
 except:
     print("Aggregator is stopped.")
-
-# Submitter
-try:
-    requests.get("http://localhost:6060/exit/")
-except:
-    print("Submitter is stopped.")
