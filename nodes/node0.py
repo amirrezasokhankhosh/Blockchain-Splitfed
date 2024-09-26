@@ -6,8 +6,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 # from split_learning.server import Server
 # from split_fed.client import Client
 # from split_fed.server import Server
-from multi_split_fed.client import Client
-from multi_split_fed.server import Server
+from sharding_split_fed.client import Client
+from sharding_split_fed.server import Server
 # from blockchain_split_fed.client import Client
 # from blockchain_split_fed.server import Server
 

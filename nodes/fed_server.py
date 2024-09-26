@@ -10,6 +10,7 @@ class FedServer:
         self.cyle_completion = {}
         self.losses = []
         self.assign_nodes()
+        self.root_path = Path(__file__).resolve().parents[1]
 
     def assign_nodes(self):
         assigned = {"servers": [], "clients": {}}
@@ -59,14 +60,14 @@ class FedServer:
         return global_model
 
     def aggregate(self):
-        servers = [torch.load(f"/home/cs/grad/sokhanka/Documents/splitfed/multi_split_fed/models/{server["id"]}_server.pth")
+        servers = [torch.load(f"{self.root_path}/sharding_split_fed/models/{server["id"]}_server.pth")
                    for server in self.assigned["servers"]]
 
         clients = []
         for server in self.assigned["servers"]:
             for client in self.assigned["clients"][server["id"]]:
                 clients.append(torch.load(
-                    f"/home/cs/grad/sokhanka/Documents/splitfed/multi_split_fed/models/{client["id"]}_client.pth"))
+                    f"{self.root_path}/sharding_split_fed/models/{client["id"]}_client.pth"))
 
         global_server = self.aggregate_models(servers)
         global_client = self.aggregate_models(clients)
@@ -108,7 +109,7 @@ class FedServer:
 
     def save_losses(self):
         file = open(
-            f"/home/cs/grad/sokhanka/Documents/splitfed/multi_split_fed/losses/aggregator.json", "w")
+            f"{self.root_path}/sharding_split_fed/losses/aggregator.json", "w")
         file.write(json.dumps(self.losses))
         return "done"
 
