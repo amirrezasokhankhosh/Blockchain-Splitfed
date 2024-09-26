@@ -27,14 +27,13 @@ class FedServer:
     def start_cycle(self):
         self.cyle_completion = {}
         self.current_cycle += 1
-        if self.current_cycle < self.cycles:
-            for server in self.assigned["servers"]:
-                self.cyle_completion[server["port"]] = False
-                requests.post(f"http://localhost:{server["port"]}/server/",
-                              json={
-                    "clients": self.assigned["clients"][server["id"]],
-                    "cycle": self.current_cycle
-                })
+        for server in self.assigned["servers"]:
+            self.cyle_completion[server["port"]] = False
+            requests.post(f"http://localhost:{server["port"]}/server/",
+                            json={
+                "clients": self.assigned["clients"][server["id"]],
+                "cycle": self.current_cycle
+            })
         print(f"*** CYCLE {self.current_cycle} STARTED ***")
         print("Training started.")
 
@@ -60,14 +59,14 @@ class FedServer:
         return global_model
 
     def aggregate(self):
-        servers = [torch.load(f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/multi_split_fed/models/{server["id"]}_server.pth")
+        servers = [torch.load(f"/home/cs/grad/sokhanka/Documents/splitfed/multi_split_fed/models/{server["id"]}_server.pth")
                    for server in self.assigned["servers"]]
 
         clients = []
         for server in self.assigned["servers"]:
             for client in self.assigned["clients"][server["id"]]:
                 clients.append(torch.load(
-                    f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/multi_split_fed/models/{client["id"]}_client.pth"))
+                    f"/home/cs/grad/sokhanka/Documents/splitfed/multi_split_fed/models/{client["id"]}_client.pth"))
 
         global_server = self.aggregate_models(servers)
         global_client = self.aggregate_models(clients)
@@ -109,7 +108,7 @@ class FedServer:
 
     def save_losses(self):
         file = open(
-            f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/multi_split_fed/losses/aggregator.json", "w")
+            f"/home/cs/grad/sokhanka/Documents/splitfed/multi_split_fed/losses/aggregator.json", "w")
         file.write(json.dumps(self.losses))
         return "done"
 

@@ -89,12 +89,12 @@ class Server:
         cwd = os.path.dirname(__file__)
         model_name = f"node_{self.port-8000}_server"
         server_model_path = os.path.abspath(
-            os.path.join(cwd, f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/multi_split_fed/models/{model_name}.pth"))
+            os.path.join(cwd, f"/home/cs/grad/sokhanka/Documents/splitfed/multi_split_fed/models/{model_name}.pth"))
         client_models_path = []
         for client in self.clients:
             model_name = f"node_{client-8000}_client"
             client_models_path.append(os.path.abspath(
-                os.path.join(cwd, f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/multi_split_fed/models/{model_name}.pth")))
+                os.path.join(cwd, f"/home/cs/grad/sokhanka/Documents/splitfed/multi_split_fed/models/{model_name}.pth")))
         return server_model_path, client_models_path
 
     def finish_training(self):
@@ -136,5 +136,5 @@ class Server:
                          })
 
     def save_losses(self):
-        file = open(f"/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/multi_split_fed/losses/node_{self.port-8000}.json", "w")
+        file = open(f"/home/cs/grad/sokhanka/Documents/splitfed/multi_split_fed/losses/node_{self.port-8000}.json", "w")
         file.write(json.dumps(self.losses))
