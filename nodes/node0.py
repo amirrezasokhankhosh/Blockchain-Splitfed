@@ -88,7 +88,6 @@ def start_server():
     temp = request.get_json()["clients"]
     clients = [c["port"] for c in temp]
     cycle = request.get_json()["cycle"]
-    print(clients, cycle)
     server.start(clients, cycle)
     # executer.submit(server.start, clients, cycle)
     return "Started."
