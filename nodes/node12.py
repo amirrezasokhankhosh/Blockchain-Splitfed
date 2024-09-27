@@ -6,7 +6,7 @@ from split_learning.client import Client
 from split_learning.server import Server
 
 
-port = 8008
+port = 8012
 num_clients = 1
 futures = {}
 executer = concurrent.futures.ThreadPoolExecutor(num_clients+1)
