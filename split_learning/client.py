@@ -1,6 +1,7 @@
 import time
 import json
 import torch
+import random
 import requests
 from torch import nn
 from pathlib import Path
@@ -39,15 +40,21 @@ class Client:
             download=False,
             transform=ToTensor()
         )
-        data_portion = len(training_dataset) // self.num_nodes
-        start_index = (self.port - 8000) * data_portion
-        end_index = (self.port - 8000 + 1) * data_portion
-        indexes = list(range(start_index, end_index))
+        data_portion = len(training_dataset) // 9
+        indexes = [random.randint(0, len(training_dataset) - 1) for _ in range(data_portion)]
 
-        test_portion = len(test_dataset) // self.num_nodes
-        test_start_index = (self.port - 8000) * test_portion
-        test_end_index = (self.port - 8000 + 1) * test_portion
-        test_indexes = list(range(test_start_index, test_end_index))
+        test_portion = len(test_dataset) // 9
+        test_indexes = [random.randint(0, len(test_dataset) - 1) for _ in range(test_portion)]
+        
+        # data_portion = len(training_dataset) // self.num_nodes
+        # start_index = (self.port - 8000) * data_portion
+        # end_index = (self.port - 8000 + 1) * data_portion
+        # indexes = list(range(start_index, end_index))
+
+        # test_portion = len(test_dataset) // self.num_nodes
+        # test_start_index = (self.port - 8000) * test_portion
+        # test_end_index = (self.port - 8000 + 1) * test_portion
+        # test_indexes = list(range(test_start_index, test_end_index))
 
         self.training_dataset = torch.utils.data.Subset(training_dataset, indexes)
         self.test_dataset = torch.utils.data.Subset(test_dataset, test_indexes)
