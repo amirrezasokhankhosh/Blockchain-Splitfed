@@ -10,7 +10,6 @@ from torch.utils.data import DataLoader
 from torchvision.transforms import ToTensor
 
 
-
 class Client:
     def __init__(self, port, ClientNN, malicious=False):
         self.port = port
@@ -133,7 +132,7 @@ class Client:
                                     })
                 status = json.loads(res.content.decode())["status"]
                 while status == "In progress":
-                    time.sleep(0.1)
+                    time.sleep(0.2)
                     res = requests.post(f"http://localhost:{server_port}/server/tasks/",
                                         json={
                                             "client_port" : self.port
