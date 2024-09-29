@@ -121,7 +121,7 @@ def run_node(i):
         )
 
 if __name__ == "__main__":
-    num_nodes = 9
+    num_nodes = 36
     cwd = os.path.dirname(__file__)
 
     os.chdir(os.path.join(cwd, "nodes"))
