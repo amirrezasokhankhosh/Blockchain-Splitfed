@@ -5,5 +5,34 @@
 [33mPress CTRL+C to quit[0m
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 256-579-823
-127.0.0.1 - - [27/Sep/2024 14:58:16] "GET /client/train/ HTTP/1.1" 200 -
+ * Debugger PIN: 856-088-911
+127.0.0.1 - - [30/Sep/2024 14:29:07] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 15:07:36] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 15:45:37] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 16:23:34] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 17:01:38] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 17:39:44] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 18:17:55] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 18:56:04] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 19:34:11] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 20:12:14] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 20:50:18] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 21:28:21] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 22:06:21] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 22:44:23] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [30/Sep/2024 23:22:25] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 00:00:30] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 00:38:30] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 01:16:36] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 01:54:37] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 02:32:42] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 03:10:48] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 03:48:54] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 04:27:02] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 05:05:07] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 05:43:14] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 06:21:21] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 06:59:41] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 07:37:48] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 08:16:02] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2024 08:54:10] "GET /client/train/ HTTP/1.1" 200 -
