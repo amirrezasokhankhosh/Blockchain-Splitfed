@@ -2,20 +2,15 @@ from global_var import *
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# from split_learning.client import Client
-# from split_learning.server import Server
 from split_fed.client import Client
 from split_fed.server import Server
-# from blockchain_split_fed.client import Client
-# from blockchain_split_fed.server import Server
 
 
 port = 8000
-num_clients = 8
+num_clients = 35
 futures = {}
 executer = concurrent.futures.ThreadPoolExecutor(num_clients+1)
 client = Client(port, ClientNN)
-# server = Server(port, ServerNN)
 server = Server(port, ServerNN, client)
 app = Flask(__name__)
 
@@ -23,8 +18,7 @@ app = Flask(__name__)
 @app.route("/client/train/")
 def train_client():
     server_port = request.get_json()["server_port"]
-    client.train(server_port)
-    # executer.submit(client.train, server_port)
+    executer.submit(client.train, server_port)
     return "The client started training!"
 
 
@@ -77,12 +71,7 @@ def round_completed():
 
 @app.route("/server/models/ready/")
 def models_ready():
-    # executer.submit(server.evaluate, client)
-    try:
-        server.evaluate(client)
-    except Exception as e:
-        print(e)
-        raise Exception("error")
+    executer.submit(server.evaluate, client)
     return "done"
 
 @app.route("/server/", methods=['POST'])
@@ -90,8 +79,7 @@ def start_server():
     temp = request.get_json()["clients"]
     clients = [c["port"] for c in temp]
     cycle = request.get_json()["cycle"]
-    server.start(clients, cycle)
-    # executer.submit(server.start, clients, cycle)
+    executer.submit(server.start, clients, cycle)
     return "Started."
 
 @app.route("/save/")
