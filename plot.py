@@ -49,24 +49,17 @@ for cycle in attack_sharding_split_fed_cycles:
     for _ in range(3):
         attack_sharding_split_fed.append(cycle)
 
-plt.plot(split_learning, label="Split Learning", color="C0")
-plt.plot(split_fed, label="SplitFed Learning", color="C1")
-plt.plot(sharding_split_fed, label="Sharding SplitFed", color="C2")
-plt.plot(bl_split_fed, label="Blockchain Sharding SplitFed", color="C3")
-plt.legend()
-plt.show()
+plt.figure(figsize=(10, 6))
 
-plt.plot(attack_split_learning, label="Attacked Split Learning",
-         color="C0", linestyle="dashed")
-plt.plot(attack_split_fed, label="Attacked SplitFed Learning",
-         color="C1", linestyle="dashed")
-plt.plot(attack_sharding_split_fed, label="Attacked Sharding SplitFed",
-         color="C2", linestyle="dashed")
-plt.plot(attack_bl_split_fed, label="Attacked Blockchain Sharding SplitFed",
-         color="C3", linestyle="dashed")
-plt.legend()
-plt.show()
 
+# plt.plot(split_learning, label="Split Learning", color='C0', linestyle='--', marker='s', markersize=6, linewidth=2)
+# plt.plot(attack_split_learning, label="Split Learning", color='C0', linestyle='--', marker='s', markersize=6, linewidth=2)
+# plt.plot(split_fed, label="Split Fed", color='C1', linestyle='--', marker='d', markersize=6, linewidth=2)
+# plt.plot(attack_split_fed, label="Split Fed", color='C1', linestyle='--', marker='d', markersize=6, linewidth=2)
+# plt.plot(sharding_split_fed, label="Sharding SplitFed", color='C2', linestyle='-', marker='p', markersize=6, linewidth=2)
+# plt.plot(attack_sharding_split_fed, label="Sharding SplitFed", color='C2', linestyle='--', marker='p', markersize=6, linewidth=2)
+# plt.plot(bl_split_fed, label="Blockchain-enabled SplitFed", color='C3', linestyle='-', marker='o', markersize=6, linewidth=2)
+# plt.plot(attack_bl_split_fed, label="Blockchain-enabled SplitFed", color='C3', linestyle='--', marker='o', markersize=6, linewidth=2)
 
 plt.plot(split_learning, label="Split Learning", color="C0")
 plt.plot(attack_split_learning, label="Attacked Split Learning",
@@ -80,5 +73,48 @@ plt.plot(attack_sharding_split_fed, label="Attacked Sharding SplitFed",
 plt.plot(bl_split_fed, label="Blockchain Sharding SplitFed", color="C3")
 plt.plot(attack_bl_split_fed, label="Attacked Blockchain Sharding SplitFed",
          color="C3", linestyle="dashed")
-plt.legend()
+
+
+plt.grid(True, which='both', linestyle='--', linewidth=0.6)
+plt.title('Performance Comparison of Learning Approaches', fontsize=16, fontweight='bold')
+plt.xlabel('Communication Rounds', fontsize=14)
+plt.ylabel('Loss', fontsize=14)
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+for spine in plt.gca().spines.values():
+    spine.set_visible(True)
+
+
+# plt.plot(split_learning, label="Split Learning", color="C0")
+# plt.plot(split_fed, label="SplitFed Learning", color="C1")
+# plt.plot(sharding_split_fed, label="Sharding SplitFed", color="C2")
+# plt.plot(bl_split_fed, label="Blockchain Sharding SplitFed", color="C3")
+plt.legend(title="Methods", fontsize=12, title_fontsize=13, loc='upper right')
 plt.show()
+
+# plt.plot(attack_split_learning, label="Attacked Split Learning",
+#          color="C0", linestyle="dashed")
+# plt.plot(attack_split_fed, label="Attacked SplitFed Learning",
+#          color="C1", linestyle="dashed")
+# plt.plot(attack_sharding_split_fed, label="Attacked Sharding SplitFed",
+#          color="C2", linestyle="dashed")
+# plt.plot(attack_bl_split_fed, label="Attacked Blockchain Sharding SplitFed",
+#          color="C3", linestyle="dashed")
+# plt.legend()
+# plt.show()
+
+
+# plt.plot(split_learning, label="Split Learning", color="C0")
+# plt.plot(attack_split_learning, label="Attacked Split Learning",
+#          color="C0", linestyle="dashed")
+# plt.plot(split_fed, label="SplitFed Learning", color="C1")
+# plt.plot(attack_split_fed, label="Attacked SplitFed Learning",
+#          color="C1", linestyle="dashed")
+# plt.plot(sharding_split_fed, label="Sharding SplitFed", color="C2")
+# plt.plot(attack_sharding_split_fed, label="Attacked Sharding SplitFed",
+#          color="C2", linestyle="dashed")
+# plt.plot(bl_split_fed, label="Blockchain Sharding SplitFed", color="C3")
+# plt.plot(attack_bl_split_fed, label="Attacked Blockchain Sharding SplitFed",
+#          color="C3", linestyle="dashed")
+# plt.legend()
+# plt.show()
