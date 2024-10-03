@@ -6,7 +6,7 @@ from sharding_split_fed.client import Client
 from sharding_split_fed.server import Server
 
 
-port = 8006
+port = 8026
 num_clients = 5
 futures = {}
 executer = concurrent.futures.ThreadPoolExecutor(num_clients+2)

@@ -1,0 +1,251 @@
+ * Serving Flask app 'node6'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8006
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 256-579-823
+127.0.0.1 - - [03/Oct/2024 15:18:29] "POST /server/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:32] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:33] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:33] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:33] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:34] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:34] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:34] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:34] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:34] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:35] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:35] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:35] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:35] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:35] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:35] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:35] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:35] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:36] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:36] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:37] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:37] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:37] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:37] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:37] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:37] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:37] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:41] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:41] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:41] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:43] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:43] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:45] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:45] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:45] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:46] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:46] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:46] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:46] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:46] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:46] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:48] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:48] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:48] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:48] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:48] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:48] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:48] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:49] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:50] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:50] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:51] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:51] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:51] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:51] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:51] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:54] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:54] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:54] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:54] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:56] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:56] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:58] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:58] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:58] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:59] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:59] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:59] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:59] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:59] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:18:59] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:00] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:00] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:00] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:00] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:01] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:01] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:01] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:01] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:01] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:01] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:01] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:01] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:02] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:02] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:04] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:04] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:04] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:04] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:04] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:05] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:06] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:06] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:08] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:08] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:08] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:08] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:09] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:09] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:09] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:09] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:09] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:10] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:11] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:12] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:13] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:13] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:13] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:13] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:13] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:13] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:14] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:14] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:15] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:15] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:15] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:15] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:16] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:16] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:16] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:16] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:16] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:16] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:16] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:16] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:18] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:22] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:23] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:23] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:23] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:24] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:24] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:24] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:26] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:27] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:27] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:28] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:29] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:29] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:29] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:29] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:29] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:29] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:29] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:31] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:31] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:31] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:31] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:31] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:31] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:31] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:31] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:32] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:36] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:36] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:36] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:36] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:43] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:43] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:44] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:44] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:45] "[35m[1mGET /exit/ HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 1498, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 1476, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 883, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 902, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 1174, in make_response
+    raise TypeError(
+TypeError: The view function for 'exit_miner' did not return a valid response. The function either returned None or ended without a return statement.
+127.0.0.1 - - [03/Oct/2024 15:19:45] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2024 15:19:47] "[35m[1mPOST /server/train/ HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 1498, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 1476, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amirrezasokhankhosh/Documents/Workstation/splitfed/nodes/./node6.py", line 38, in train_server
+    future = executer.submit(server.train, client_port, batch, clientOutputCPU, targets)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/concurrent/futures/thread.py", line 170, in submit
+    raise RuntimeError('cannot schedule new futures after shutdown')
+RuntimeError: cannot schedule new futures after shutdown

@@ -6,11 +6,11 @@ from sharding_split_fed.client import Client
 from sharding_split_fed.server import Server
 
 
-port = 8006
+port = 8013
 num_clients = 5
 futures = {}
 executer = concurrent.futures.ThreadPoolExecutor(num_clients+2)
-client = Client(port, ClientNN, malicious=False)
+client = Client(port, ClientNN, malicious=True)
 server = Server(port, ServerNN)
 app = Flask(__name__)
 
