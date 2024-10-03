@@ -1,6 +1,7 @@
 import time
 import json
 import torch
+import random
 import requests
 from torch import nn
 from pathlib import Path
@@ -25,7 +26,6 @@ class Client:
         self.malicious = malicious
         self.root_path = Path(__file__).resolve().parents[1]
 
-    #CIFAR10 or Fas
     def get_data(self):
         training_dataset = datasets.FashionMNIST(
             root="data",
@@ -39,15 +39,21 @@ class Client:
             download=True,
             transform=ToTensor()
         )
-        data_portion = len(training_dataset) // self.num_nodes
-        start_index = (self.port - 8000) * data_portion
-        end_index = (self.port - 8000 + 1) * data_portion
-        indexes = list(range(start_index, end_index))
 
-        test_portion = len(test_dataset) // self.num_nodes
-        test_start_index = (self.port - 8000) * test_portion
-        test_end_index = (self.port - 8000 + 1) * test_portion
-        test_indexes = list(range(test_start_index, test_end_index))
+        data_portion = len(training_dataset) // self.num_nodes
+        indexes = [random.randint(0, len(training_dataset) - 1) for _ in range(data_portion)]
+        test_portion = len(test_dataset) // 9
+        test_indexes = [random.randint(0, len(test_dataset) - 1) for _ in range(test_portion)]
+
+        # data_portion = len(training_dataset) // self.num_nodes
+        # start_index = (self.port - 8000) * data_portion
+        # end_index = (self.port - 8000 + 1) * data_portion
+        # indexes = list(range(start_index, end_index))
+
+        # test_portion = len(test_dataset) // self.num_nodes
+        # test_start_index = (self.port - 8000) * test_portion
+        # test_end_index = (self.port - 8000 + 1) * test_portion
+        # test_indexes = list(range(test_start_index, test_end_index))
 
         self.training_dataset = torch.utils.data.Subset(training_dataset, indexes)
         self.test_dataset = torch.utils.data.Subset(test_dataset, test_indexes)
@@ -102,7 +108,7 @@ class Client:
                                         })
                     status = json.loads(res.content.decode())["status"]
                     while status == "In progress":
-                        time.sleep(0.1)
+                        time.sleep(0.2)
                         res = requests.post(f"http://localhost:{server_port}/server/tasks/",
                                             json={
                                                 "client_port" : self.port
@@ -139,7 +145,7 @@ class Client:
                                     })
                 status = json.loads(res.content.decode())["status"]
                 while status == "In progress":
-                    time.sleep(0.1)
+                    time.sleep(0.2)
                     res = requests.post(f"http://localhost:{server_port}/server/tasks/",
                                         json={
                                             "client_port" : self.port

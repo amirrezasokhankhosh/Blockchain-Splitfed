@@ -7,7 +7,7 @@ except:
     print("App1 is stopped.")
 
 # Nodes
-for i in range(9):
+for i in range(36):
     try:
         requests.get(f"http://localhost:{8000 + i}/exit/")
     except:
