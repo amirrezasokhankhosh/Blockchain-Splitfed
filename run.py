@@ -18,7 +18,7 @@ num_clients = {num_clients}
 futures = {{}}
 executer = concurrent.futures.ThreadPoolExecutor(num_clients+2)
 client = Client(port, ClientNN)
-server = Server(port, ServerNN, client)
+server = Server(port, ServerNN)
 app = Flask(__name__)
 
 
