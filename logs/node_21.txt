@@ -1,0 +1,48 @@
+ * Serving Flask app 'node21'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8021
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 856-088-911
+127.0.0.1 - - [04/Oct/2024 11:41:10] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 11:41:10] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 11:46:42] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 11:52:14] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 11:57:45] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 11:57:45] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:03:14] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:08:46] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:14:16] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:14:17] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:19:48] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:25:19] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:30:54] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:30:54] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:36:24] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:41:52] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:47:24] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:47:25] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:52:55] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:58:25] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:04:00] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:04:00] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:09:31] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:15:04] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:20:37] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:20:37] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:26:11] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:31:43] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:37:18] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:37:18] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:42:52] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:48:24] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:53:57] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:53:57] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:59:27] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:04:58] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:10:31] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:10:31] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:16:00] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:21:28] "GET /client/train/ HTTP/1.1" 200 -

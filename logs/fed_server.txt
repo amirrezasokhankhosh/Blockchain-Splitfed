@@ -5,13 +5,97 @@
 [33mPress CTRL+C to quit[0m
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 256-579-823
-127.0.0.1 - - [26/Sep/2024 18:18:30] "GET /start/ HTTP/1.1" 200 -
-127.0.0.1 - - [26/Sep/2024 18:18:51] "POST /server/cycle/ HTTP/1.1" 200 -
-127.0.0.1 - - [26/Sep/2024 18:18:52] "POST /server/cycle/ HTTP/1.1" 200 -
+ * Debugger PIN: 856-088-911
+127.0.0.1 - - [04/Oct/2024 11:41:10] "GET /start/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 11:57:35] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 11:57:35] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 11:57:38] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 11:57:42] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 11:57:43] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 11:57:45] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:14:03] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:14:06] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:14:13] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:14:15] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:14:15] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:14:16] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:30:38] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:30:41] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:30:43] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:30:43] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:30:48] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:30:54] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:47:13] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:47:17] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:47:18] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:47:19] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:47:24] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 12:47:24] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:03:46] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:03:51] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:03:57] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:03:57] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:03:58] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:04:00] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:20:29] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:20:29] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:20:29] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:20:30] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:20:32] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:20:37] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:37:00] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:37:07] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:37:07] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:37:10] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:37:13] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:37:18] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:53:42] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:53:46] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:53:46] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:53:47] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:53:54] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 13:53:57] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:10:20] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:10:21] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:10:24] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:10:28] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:10:30] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:10:31] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:26:58] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:26:59] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:26:59] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:27:00] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 14:27:04] "POST /server/cycle/ HTTP/1.1" 200 -
 *** CYCLE 1 STARTED ***
 Training started.
 *** CYCLE 1 COMPLETED ***
+*** CYCLE 2 STARTED ***
+Training started.
+*** CYCLE 2 COMPLETED ***
+*** CYCLE 3 STARTED ***
+Training started.
+*** CYCLE 3 COMPLETED ***
+*** CYCLE 4 STARTED ***
+Training started.
+*** CYCLE 4 COMPLETED ***
+*** CYCLE 5 STARTED ***
+Training started.
+*** CYCLE 5 COMPLETED ***
+*** CYCLE 6 STARTED ***
+Training started.
+*** CYCLE 6 COMPLETED ***
+*** CYCLE 7 STARTED ***
+Training started.
+*** CYCLE 7 COMPLETED ***
+*** CYCLE 8 STARTED ***
+Training started.
+*** CYCLE 8 COMPLETED ***
+*** CYCLE 9 STARTED ***
+Training started.
+*** CYCLE 9 COMPLETED ***
+*** CYCLE 10 STARTED ***
+Training started.
+*** CYCLE 10 COMPLETED ***
 All cycles completed.
 Node0 is stopped.
 Node1 is stopped.
@@ -22,4 +106,30 @@ Node5 is stopped.
 Node6 is stopped.
 Node7 is stopped.
 Node8 is stopped.
+Node9 is stopped.
+Node10 is stopped.
+Node11 is stopped.
+Node12 is stopped.
+Node13 is stopped.
+Node14 is stopped.
+Node15 is stopped.
+Node16 is stopped.
+Node17 is stopped.
+Node18 is stopped.
+Node19 is stopped.
+Node20 is stopped.
+Node21 is stopped.
+Node22 is stopped.
+Node23 is stopped.
+Node25 is stopped.
+Node26 is stopped.
+Node27 is stopped.
+Node28 is stopped.
+Node29 is stopped.
+Node30 is stopped.
+Node31 is stopped.
+Node32 is stopped.
+Node33 is stopped.
+Node34 is stopped.
+Node35 is stopped.
 Fed server is stopped.

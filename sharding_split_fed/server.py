@@ -19,7 +19,7 @@ class Server:
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.lr = 3e-4
         self.ServerNN = ServerNN
-        self.avg_model = self.ServerNN().to(self.device)
+        self.avg_model = self.ServerNN()
         self.models = {}
         self.losses = {}
         self.round_completion = {}

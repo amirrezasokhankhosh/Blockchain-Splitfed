@@ -3,9 +3,9 @@ from global_var import *
 
 class FedServer:
     def __init__(self):
-        self.cycles = 20
-        self.num_servers = 3
-        self.num_clients = 2
+        self.cycles = 10
+        self.num_servers = 6
+        self.num_clients = 5
         self.current_cycle = 0
         self.cyle_completion = {}
         self.losses = []
