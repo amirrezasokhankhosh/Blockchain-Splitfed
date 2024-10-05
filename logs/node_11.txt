@@ -5,26 +5,44 @@
 [33mPress CTRL+C to quit[0m
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 256-579-823
-127.0.0.1 - - [03/Oct/2024 15:18:29] "GET /client/load/ HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2024 15:18:30] "GET /client/train/ HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2024 15:19:47] "[35m[1mGET /exit/ HTTP/1.1[0m" 500 -
-Traceback (most recent call last):
-  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 1498, in __call__
-    return self.wsgi_app(environ, start_response)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 1476, in wsgi_app
-    response = self.handle_exception(e)
-               ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 883, in full_dispatch_request
-    return self.finalize_request(rv)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 902, in finalize_request
-    response = self.make_response(rv)
-               ^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/amirrezasokhankhosh/mambaforge/envs/flask/lib/python3.12/site-packages/flask/app.py", line 1174, in make_response
-    raise TypeError(
-TypeError: The view function for 'exit_miner' did not return a valid response. The function either returned None or ended without a return statement.
+ * Debugger PIN: 856-088-911
+127.0.0.1 - - [04/Oct/2024 15:58:53] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 15:58:53] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:04:36] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:10:18] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:15:57] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:15:57] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:21:38] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:27:18] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:32:56] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:32:56] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:38:37] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:44:17] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:49:54] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:49:54] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:55:36] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:01:17] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:06:53] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:06:53] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:12:34] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:18:14] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:23:57] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:23:57] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:29:38] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:35:18] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:40:55] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:40:55] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:46:38] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:52:20] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:58:03] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:58:03] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:03:49] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:09:35] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:15:19] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:15:19] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:21:07] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:26:51] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:32:32] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:32:32] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:38:17] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:44:02] "GET /client/train/ HTTP/1.1" 200 -

@@ -5,7 +5,131 @@
 [33mPress CTRL+C to quit[0m
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 256-579-823
-127.0.0.1 - - [03/Oct/2024 15:18:29] "GET /start/ HTTP/1.1" 200 -
+ * Debugger PIN: 856-088-911
+127.0.0.1 - - [04/Oct/2024 15:58:53] "GET /start/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:15:12] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:15:20] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:15:26] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:15:50] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:15:54] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:15:56] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:32:14] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:32:16] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:32:27] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:32:50] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:32:55] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:32:56] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:49:18] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:49:20] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:49:25] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:49:49] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:49:53] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 16:49:54] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:06:08] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:06:09] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:06:20] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:06:50] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:06:50] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:06:53] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:23:12] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:23:17] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:23:21] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:23:52] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:23:55] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:23:57] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:40:13] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:40:19] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:40:28] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:40:46] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:40:53] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:40:55] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:57:24] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:57:28] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:57:31] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:57:55] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:57:56] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 17:58:03] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:14:35] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:14:36] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:14:49] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:15:04] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:15:07] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:15:19] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:31:48] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:31:52] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:31:59] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:32:17] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:32:21] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:32:32] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:49:00] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:49:12] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:49:15] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:49:33] "POST /server/cycle/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Oct/2024 18:49:34] "POST /server/cycle/ HTTP/1.1" 200 -
 *** CYCLE 1 STARTED ***
 Training started.
+*** CYCLE 1 COMPLETED ***
+*** CYCLE 2 STARTED ***
+Training started.
+*** CYCLE 2 COMPLETED ***
+*** CYCLE 3 STARTED ***
+Training started.
+*** CYCLE 3 COMPLETED ***
+*** CYCLE 4 STARTED ***
+Training started.
+*** CYCLE 4 COMPLETED ***
+*** CYCLE 5 STARTED ***
+Training started.
+*** CYCLE 5 COMPLETED ***
+*** CYCLE 6 STARTED ***
+Training started.
+*** CYCLE 6 COMPLETED ***
+*** CYCLE 7 STARTED ***
+Training started.
+*** CYCLE 7 COMPLETED ***
+*** CYCLE 8 STARTED ***
+Training started.
+*** CYCLE 8 COMPLETED ***
+*** CYCLE 9 STARTED ***
+Training started.
+*** CYCLE 9 COMPLETED ***
+*** CYCLE 10 STARTED ***
+Training started.
+*** CYCLE 10 COMPLETED ***
+All cycles completed.
+Node0 is stopped.
+Node1 is stopped.
+Node2 is stopped.
+Node3 is stopped.
+Node4 is stopped.
+Node5 is stopped.
+Node6 is stopped.
+Node7 is stopped.
+Node8 is stopped.
+Node9 is stopped.
+Node10 is stopped.
+Node11 is stopped.
+Node12 is stopped.
+Node13 is stopped.
+Node14 is stopped.
+Node15 is stopped.
+Node16 is stopped.
+Node17 is stopped.
+Node19 is stopped.
+Node20 is stopped.
+Node21 is stopped.
+Node22 is stopped.
+Node23 is stopped.
+Node24 is stopped.
+Node25 is stopped.
+Node26 is stopped.
+Node27 is stopped.
+Node28 is stopped.
+Node29 is stopped.
+Node30 is stopped.
+Node31 is stopped.
+Node32 is stopped.
+Node33 is stopped.
+Node34 is stopped.
+Node35 is stopped.
+Fed server is stopped.
