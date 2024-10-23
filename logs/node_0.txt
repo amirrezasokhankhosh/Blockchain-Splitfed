@@ -5,6 +5,198 @@
 [33mPress CTRL+C to quit[0m
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 256-579-823
-127.0.0.1 - - [26/Sep/2024 18:49:30] "GET /client/load/ HTTP/1.1" 200 -
-127.0.0.1 - - [26/Sep/2024 18:51:47] "GET /client/train/ HTTP/1.1" 200 -
+ * Debugger PIN: 111-361-953
+127.0.0.1 - - [21/Oct/2024 13:04:07] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2024 13:04:07] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2024 13:38:59] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2024 14:13:36] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2024 14:48:28] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2024 14:48:28] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2024 15:22:11] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2024 15:55:47] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2024 16:31:01] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2024 16:31:01] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2024 17:03:48] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2024 17:36:16] "GET /client/train/ HTTP/1.1" 200 -
+ * Serving Flask app 'node0'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 111-361-953
+127.0.0.1 - - [22/Oct/2024 09:07:41] "POST /server/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:43] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:43] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:44] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:46] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:46] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:47] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:48] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:48] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:49] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:49] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:49] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:49] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:49] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:49] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:49] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:49] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:49] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:50] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:50] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:50] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:50] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:50] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:51] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:52] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:52] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:52] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:52] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:53] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:54] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:54] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:54] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:54] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:54] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:54] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:54] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:54] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:55] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:55] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:55] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:55] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:55] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:55] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:55] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:55] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:57] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:58] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:58] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:58] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:58] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:58] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:59] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:59] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:59] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:59] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:07:59] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:00] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:00] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:00] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:00] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:00] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:00] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:00] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:02] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:02] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:02] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:02] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:02] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:03] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:03] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:03] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:04] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:04] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:04] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:04] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:04] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:04] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:05] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:05] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:06] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:06] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:06] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:06] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:07] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:07] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:07] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:07] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:07] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:07] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:07] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:07] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:07] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:07] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:07] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:07] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:08] "POST /server/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:08] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:08] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:09] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:09] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:09] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:09] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:09] "POST /server/tasks/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:08:09] "[35m[1mGET /exit/ HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/cs/grad/sokhanka/miniconda3/envs/data-science/lib/python3.12/site-packages/flask/app.py", line 1498, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cs/grad/sokhanka/miniconda3/envs/data-science/lib/python3.12/site-packages/flask/app.py", line 1476, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cs/grad/sokhanka/miniconda3/envs/data-science/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cs/grad/sokhanka/miniconda3/envs/data-science/lib/python3.12/site-packages/flask/app.py", line 883, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cs/grad/sokhanka/miniconda3/envs/data-science/lib/python3.12/site-packages/flask/app.py", line 902, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cs/grad/sokhanka/miniconda3/envs/data-science/lib/python3.12/site-packages/flask/app.py", line 1174, in make_response
+    raise TypeError(
+TypeError: The view function for 'exit_miner' did not return a valid response. The function either returned None or ended without a return statement.
+ * Serving Flask app 'node0'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 111-361-953
+127.0.0.1 - - [22/Oct/2024 09:11:02] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:11:02] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 09:45:19] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 10:19:00] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 10:52:44] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 10:52:44] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 11:25:45] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 11:58:29] "GET /client/train/ HTTP/1.1" 200 -
+ * Serving Flask app 'node0'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 111-361-953
+127.0.0.1 - - [22/Oct/2024 13:27:45] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 13:27:45] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 14:00:58] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 14:33:22] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 15:09:13] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 15:09:14] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 15:41:17] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 16:13:08] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 16:45:46] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 16:45:46] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 17:17:39] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [22/Oct/2024 17:49:28] "GET /client/train/ HTTP/1.1" 200 -

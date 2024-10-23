@@ -19,7 +19,7 @@ class Server:
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.lr = 3e-4
         self.ServerNN = ServerNN
-        self.avg_model = self.ServerNN().to(self.device)
+        self.avg_model = self.ServerNN()
         self.models = {}
         self.losses = {}
         self.round_completion = {}
@@ -56,8 +56,11 @@ class Server:
         optimizer.step()
         grad = clientOutputCPU.grad.clone().detach()
         model = model.to("cpu")
-        torch.cuda.empty_cache()
         self.set_model(model, client_port)
+        del model, targets, clientOutput, clientOutputCPU, pred, loss_fn
+        optimizer.zero_grad(set_to_none=True)  # Clear gradients
+        del optimizer
+        torch.cuda.empty_cache()
         return grad, loss.item()
 
     def predict(self, clientOutputCPU, path):
@@ -68,7 +71,13 @@ class Server:
         with torch.no_grad():
             clientOutputCPU = clientOutputCPU.clone().detach().requires_grad_(False)
             clientOutput = clientOutputCPU.to("cpu")
-            return model(clientOutput)
+            pred = model(clientOutput)
+        
+        # Clean up
+        del clientOutput, clientOutputCPU, model
+        torch.cuda.empty_cache()
+
+        return pred
 
     def evaluate(self, client):
         models_path = self.get_submitted_models()
@@ -102,6 +111,9 @@ class Server:
                 weights_avg[k] += self.models[clients[i]].state_dict()[k]
             weights_avg[k] = torch.div(weights_avg[k], len(clients))
         self.avg_model.load_state_dict(weights_avg)
+
+        del weights_avg
+        torch.cuda.empty_cache()
 
     def finish_round(self, client, losses):
         self.losses[self.current_cycle][client][self.current_round] = losses

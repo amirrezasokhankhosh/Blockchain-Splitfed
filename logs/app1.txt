@@ -5,11 +5,198 @@ Training started.
 Evaluation started.
 Winners:
 {
-  servers: [ 'node_6', 'node_8' ],
-  clients: [ 'node_1', 'node_0', 'node_5', 'node_4' ]
+  servers: [ 'node_7', 'node_9', 'node_5' ],
+  clients: [
+    'node_26', 'node_25',
+    'node_24', 'node_23',
+    'node_22', 'node_35',
+    'node_34', 'node_33',
+    'node_32', 'node_31',
+    'node_17', 'node_16',
+    'node_15', 'node_14',
+    'node_13'
+  ]
 }
 Aggregation completed.
 *** CYCLE 1 COMPLETED *** 
 
+*** CYCLE 2 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_32', 'node_23', 'node_13' ],
+  clients: [
+    'node_7',  'node_33',
+    'node_24', 'node_9',
+    'node_25', 'node_21',
+    'node_2',  'node_6',
+    'node_15', 'node_27',
+    'node_31', 'node_12',
+    'node_17', 'node_0',
+    'node_4'
+  ]
+}
+Aggregation completed.
+*** CYCLE 2 COMPLETED *** 
+
+*** CYCLE 3 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_15', 'node_14', 'node_28' ],
+  clients: [
+    'node_3',  'node_16',
+    'node_34', 'node_22',
+    'node_25', 'node_10',
+    'node_26', 'node_31',
+    'node_29', 'node_20',
+    'node_5',  'node_6',
+    'node_18', 'node_35',
+    'node_30'
+  ]
+}
+Aggregation completed.
+*** CYCLE 3 COMPLETED *** 
+
+*** CYCLE 4 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_16', 'node_14', 'node_6' ],
+  clients: [
+    'node_33', 'node_12',
+    'node_8',  'node_27',
+    'node_2',  'node_25',
+    'node_9',  'node_23',
+    'node_21', 'node_24',
+    'node_30', 'node_13',
+    'node_11', 'node_1',
+    'node_35'
+  ]
+}
+Aggregation completed.
+*** CYCLE 4 COMPLETED *** 
+
+*** CYCLE 5 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_8', 'node_20', 'node_12' ],
+  clients: [
+    'node_26', 'node_13',
+    'node_6',  'node_1',
+    'node_7',  'node_28',
+    'node_5',  'node_27',
+    'node_34', 'node_15',
+    'node_29', 'node_19',
+    'node_22', 'node_10',
+    'node_31'
+  ]
+}
+Aggregation completed.
+*** CYCLE 5 COMPLETED *** 
+
+*** CYCLE 6 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_1', 'node_34', 'node_2' ],
+  clients: [
+    'node_22', 'node_28',
+    'node_24', 'node_15',
+    'node_4',  'node_19',
+    'node_12', 'node_11',
+    'node_33', 'node_23',
+    'node_6',  'node_8',
+    'node_35', 'node_5',
+    'node_20'
+  ]
+}
+Aggregation completed.
+*** CYCLE 6 COMPLETED *** 
+
+*** CYCLE 7 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_33', 'node_22', 'node_15' ],
+  clients: [
+    'node_10', 'node_24',
+    'node_18', 'node_9',
+    'node_6',  'node_35',
+    'node_34', 'node_5',
+    'node_20', 'node_2',
+    'node_14', 'node_26',
+    'node_30', 'node_21',
+    'node_29'
+  ]
+}
+Aggregation completed.
+*** CYCLE 7 COMPLETED *** 
+
+*** CYCLE 8 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_18', 'node_20', 'node_5' ],
+  clients: [
+    'node_35', 'node_22',
+    'node_21', 'node_14',
+    'node_24', 'node_19',
+    'node_25', 'node_6',
+    'node_11', 'node_30',
+    'node_9',  'node_15',
+    'node_0',  'node_28',
+    'node_8'
+  ]
+}
+Aggregation completed.
+*** CYCLE 8 COMPLETED *** 
+
 Cycle trip times is saved.
 All cycles completed.
+stdout: Node0 is stopped.
+Node1 is stopped.
+Node2 is stopped.
+Node3 is stopped.
+Node4 is stopped.
+Node5 is stopped.
+Node6 is stopped.
+Node7 is stopped.
+Node8 is stopped.
+Node9 is stopped.
+Node10 is stopped.
+Node11 is stopped.
+Node12 is stopped.
+Node13 is stopped.
+Node14 is stopped.
+Node15 is stopped.
+Node16 is stopped.
+Node17 is stopped.
+Node18 is stopped.
+Node19 is stopped.
+Node20 is stopped.
+Node21 is stopped.
+Node22 is stopped.
+Node23 is stopped.
+Node24 is stopped.
+Node25 is stopped.
+Node26 is stopped.
+Node27 is stopped.
+Node28 is stopped.
+Node29 is stopped.
+Node30 is stopped.
+Node31 is stopped.
+Node32 is stopped.
+Node33 is stopped.
+Node34 is stopped.
+Node35 is stopped.
+Aggregator is stopped.
+

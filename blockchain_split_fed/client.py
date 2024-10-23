@@ -14,7 +14,7 @@ from torchvision.transforms import ToTensor
 class Client:
     def __init__(self, port, ClientNN, malicious=False):
         self.port = port
-        self.batch_size = 128
+        self.batch_size = 64
         self.epochs = 5
         self.num_nodes = 9
         # self.device = "cuda" if torch.cuda.is_available() else "cpu"
