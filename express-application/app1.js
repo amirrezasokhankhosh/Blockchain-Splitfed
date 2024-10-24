@@ -22,12 +22,12 @@ const app = express();
 const jsonParser = bodyParser.json();
 const port = 3000;
 
-const k = 2;
-const cycles = 20;
+const k = 3;
+const cycles = 3;
 let currentCycle = 0;
 const aggregatorPort = 5050;
-const numServers = 3;
-const numClients = 2;
+const numServers = 6;
+const numClients = 5;
 let startTime = 0
 let endTime = 0
 let cycleTimes = {}

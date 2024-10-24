@@ -1,0 +1,222 @@
+Server is listening on localhost:3000.
+
+*** CYCLE 1 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_35', 'node_3', 'node_24' ],
+  clients: [
+    'node_34', 'node_33',
+    'node_32', 'node_31',
+    'node_30', 'node_29',
+    'node_28', 'node_27',
+    'node_26', 'node_25',
+    'node_23', 'node_22',
+    'node_21', 'node_20',
+    'node_2'
+  ]
+}
+Aggregation completed.
+*** CYCLE 1 COMPLETED *** 
+
+*** CYCLE 2 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_33', 'node_22', 'node_29' ],
+  clients: [
+    'node_31', 'node_30',
+    'node_35', 'node_34',
+    'node_32', 'node_21',
+    'node_23', 'node_24',
+    'node_20', 'node_2',
+    'node_28', 'node_25',
+    'node_3',  'node_26',
+    'node_27'
+  ]
+}
+Aggregation completed.
+*** CYCLE 2 COMPLETED *** 
+
+*** CYCLE 3 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_28', 'node_31', 'node_20' ],
+  clients: [
+    'node_23', 'node_21',
+    'node_24', 'node_22',
+    'node_25', 'node_35',
+    'node_32', 'node_33',
+    'node_34', 'node_30',
+    'node_26', 'node_29',
+    'node_2',  'node_27',
+    'node_3'
+  ]
+}
+Aggregation completed.
+*** CYCLE 3 COMPLETED *** 
+
+*** CYCLE 4 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_33', 'node_22', 'node_29' ],
+  clients: [
+    'node_25', 'node_24',
+    'node_32', 'node_23',
+    'node_28', 'node_31',
+    'node_30', 'node_34',
+    'node_35', 'node_21',
+    'node_26', 'node_27',
+    'node_20', 'node_3',
+    'node_2'
+  ]
+}
+Aggregation completed.
+*** CYCLE 4 COMPLETED *** 
+
+*** CYCLE 5 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_32', 'node_34', 'node_27' ],
+  clients: [
+    'node_25', 'node_21',
+    'node_35', 'node_31',
+    'node_28', 'node_33',
+    'node_22', 'node_24',
+    'node_30', 'node_23',
+    'node_26', 'node_20',
+    'node_29', 'node_3',
+    'node_2'
+  ]
+}
+Aggregation completed.
+*** CYCLE 5 COMPLETED *** 
+
+*** CYCLE 6 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_31', 'node_35', 'node_29' ],
+  clients: [
+    'node_25', 'node_21',
+    'node_32', 'node_28',
+    'node_22', 'node_30',
+    'node_24', 'node_34',
+    'node_33', 'node_23',
+    'node_20', 'node_26',
+    'node_27', 'node_3',
+    'node_2'
+  ]
+}
+Aggregation completed.
+*** CYCLE 6 COMPLETED *** 
+
+*** CYCLE 7 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_28', 'node_32', 'node_26' ],
+  clients: [
+    'node_30', 'node_24',
+    'node_35', 'node_27',
+    'node_20', 'node_34',
+    'node_21', 'node_22',
+    'node_31', 'node_25',
+    'node_29', 'node_3',
+    'node_2',  'node_33',
+    'node_23'
+  ]
+}
+Aggregation completed.
+*** CYCLE 7 COMPLETED *** 
+
+*** CYCLE 8 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_24', 'node_21', 'node_30' ],
+  clients: [
+    'node_20', 'node_27',
+    'node_28', 'node_25',
+    'node_31', 'node_32',
+    'node_34', 'node_35',
+    'node_22', 'node_33',
+    'node_29', 'node_3',
+    'node_2',  'node_26',
+    'node_23'
+  ]
+}
+Aggregation completed.
+*** CYCLE 8 COMPLETED *** 
+
+*** CYCLE 9 STARTED ***
+Training started.
+Evaluation started.
+Winners:
+{
+  servers: [ 'node_27', 'node_2', 'node_16' ],
+  clients: [
+    'node_35', 'node_20',
+    'node_25', 'node_24',
+    'node_32', 'node_30',
+    'node_33', 'node_29',
+    'node_28', 'node_23',
+    'node_15', 'node_14',
+    'node_19', 'node_17',
+    'node_18'
+  ]
+}
+Aggregation completed.
+*** CYCLE 9 COMPLETED *** 
+
+Cycle trip times is saved.
+All cycles completed.
+stdout: Node0 is stopped.
+Node1 is stopped.
+Node2 is stopped.
+Node3 is stopped.
+Node4 is stopped.
+Node5 is stopped.
+Node6 is stopped.
+Node7 is stopped.
+Node8 is stopped.
+Node9 is stopped.
+Node10 is stopped.
+Node11 is stopped.
+Node12 is stopped.
+Node13 is stopped.
+Node14 is stopped.
+Node15 is stopped.
+Node16 is stopped.
+Node17 is stopped.
+Node18 is stopped.
+Node19 is stopped.
+Node20 is stopped.
+Node21 is stopped.
+Node22 is stopped.
+Node23 is stopped.
+Node24 is stopped.
+Node25 is stopped.
+Node26 is stopped.
+Node27 is stopped.
+Node28 is stopped.
+Node29 is stopped.
+Node30 is stopped.
+Node31 is stopped.
+Node32 is stopped.
+Node33 is stopped.
+Node34 is stopped.
+Node35 is stopped.
+Aggregator is stopped.
+

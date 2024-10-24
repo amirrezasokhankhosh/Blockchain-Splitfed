@@ -25,7 +25,6 @@ class Client:
         self.malicious = malicious
         self.root_path = Path(__file__).resolve().parents[1]
 
-    #CIFAR10 or Fas
     def get_data(self):
         training_dataset = datasets.FashionMNIST(
             root="data",

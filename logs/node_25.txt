@@ -1,0 +1,60 @@
+ * Serving Flask app 'node25'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8025
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 111-361-953
+127.0.0.1 - - [23/Oct/2024 00:10:37] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 00:10:38] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 00:42:51] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 01:15:07] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 01:51:56] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 01:51:56] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 02:24:17] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 02:56:30] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 03:34:00] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 03:34:00] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 04:06:35] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 04:39:05] "GET /client/train/ HTTP/1.1" 200 -
+ * Serving Flask app 'node25'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8025
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 111-361-953
+127.0.0.1 - - [23/Oct/2024 09:52:15] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 09:52:15] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 10:25:28] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 10:58:16] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 11:33:56] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 11:33:56] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 12:06:46] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 12:39:15] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 13:15:05] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 13:15:05] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 13:47:26] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 14:19:37] "GET /client/train/ HTTP/1.1" 200 -
+ * Serving Flask app 'node25'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8025
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 111-361-953
+127.0.0.1 - - [23/Oct/2024 15:05:53] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 15:05:53] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 15:38:32] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 16:10:56] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 16:47:10] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 16:47:10] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 17:19:31] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 17:51:42] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 18:27:32] "GET /client/load/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 18:27:32] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 18:59:51] "GET /client/train/ HTTP/1.1" 200 -
+127.0.0.1 - - [23/Oct/2024 19:31:52] "GET /client/train/ HTTP/1.1" 200 -

@@ -7,10 +7,10 @@ from blockchain_split_fed.server import Server
 
 
 port = 8004
-num_clients = 3
+num_clients = 5
 futures = {}
-executer = concurrent.futures.ThreadPoolExecutor(num_clients+1)
-client = Client(port, ClientNN)
+executer = concurrent.futures.ThreadPoolExecutor(num_clients+2)
+client = Client(port, ClientNN, malicious=True)
 server = Server(port, ServerNN)
 app = Flask(__name__)
 
@@ -18,7 +18,6 @@ app = Flask(__name__)
 @app.route("/client/train/")
 def train_client():
     server_port = request.get_json()["server_port"]
-    # client.train(server_port)
     executer.submit(client.train, server_port)
     return "The client started training!"
 
@@ -72,12 +71,7 @@ def round_completed():
 
 @app.route("/server/models/ready/")
 def models_ready():
-    # executer.submit(server.evaluate, client)
-    try:
-        server.evaluate(client)
-    except Exception as e:
-        print(e)
-        raise Exception("error")
+    executer.submit(server.evaluate, client)
     return "done"
 
 @app.route("/server/", methods=['POST'])
